@@ -1,0 +1,10 @@
+Forum
+
+
+1- Thread
+2- Reply
+3- Users
+
+
+each thread should belong to a User
+each reply belongs to a user and belongs to a thread
