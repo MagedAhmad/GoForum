@@ -49,7 +49,6 @@ class ReadThreadsTest extends TestCase
         $channel = create('App\Channel');
         $threadInChannel = create('App\Thread',['channel_id' => $channel->id]);
         $threadNotInChannel = create('App\Thread');
-
         $this->get('/threads/'. $channel->slug)
             ->assertSee($threadInChannel->title)
             ->assertDontSee($threadNotInChannel->title);
@@ -67,6 +66,33 @@ class ReadThreadsTest extends TestCase
             ->assertSee($threadByMaged->title)
             ->assertDontSee($threadNotByMaged->title);
     }
+
+
+    /** @test */
+    public function test_a_user_can_filter_threads_by_popularity()
+    {
+        // we get 3 threads . one with 3 replies one with 2 replies and one with 0 replies
+        // when we visit /threads?popular=1
+        // we get them in order
+
+        $threadWithTwoReplies = create('App\Thread');
+        create('App\Reply',['thread_id' => $threadWithTwoReplies]);
+        create('App\Reply',['thread_id' => $threadWithTwoReplies]);
+
+        $threadWithThreeReplies = create('App\Thread');
+        create('App\Reply',['thread_id' => $threadWithThreeReplies]);
+        create('App\Reply',['thread_id' => $threadWithThreeReplies]);
+        create('App\Reply',['thread_id' => $threadWithThreeReplies]);
+
+        $threadWithNoReply = $this->thread;
+
+
+
+        $response = $this->getJson('/threads?popular=1')->json();
+
+        $this->assertEquals([3,2,0], array_column($response, 'replies_count'));
+    }
+        
 
 }
    

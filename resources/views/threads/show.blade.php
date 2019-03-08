@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><a href="#">{{$thread->user->name }} </a>Posted:   {{ $thread->title}}</div>
@@ -15,31 +15,42 @@
                     </article>
                 </div>
             </div>
+            <br>
+
+            
+            @foreach($replies as $reply)
+                @include('threads.reply')
+            @endforeach
+
+            {{ $replies->links()}}
+
+            @if(auth()->check())
+                <form method="POST" action="{{$thread->path(). '/replies'}}">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <textarea class="form-control" name="body" rows="5" placeholder="Have something to say?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+                    </div>
+                </form>
+            @else
+            <p class="text-center">Please <a  href="{{route('login')}}">SIGN IN</a> to participate in this forum!</p>
+            @endif
+
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <p>This thread was published {{$thread->created_at->diffForHumans()}} by 
+                        <a href="#">{{$thread->user->name}}</a>, and currently has {{ $thread->replies_count }} {{ str_plural('Comment', $thread->replies_count )}}
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
+
     <br>
-    <div class="row justify-content-center">
-
-        @foreach($thread->replies as $reply)
-            @include('threads.reply')
-
-        @endforeach
-    </div>
-    <br>
-    @if(auth()->check())
-    <div class="row justify-content-center">
-        <form method="POST" action="{{$thread->path(). '/replies'}}">
-            {{ csrf_field() }}
-            <div class="form-group">
-                                
-                <textarea class="form-control" name="body" rows="5" placeholder="Have something to say?"></textarea>
-
-                <input type="submit" name="submit" value="Submit">
-            </div>
-        </form>
-    </div>
-    @else
-    <p class="text-center">Please <a href="{{route('login')}}">SIGN IN</a> to participate in this forum!</p>
-    @endif
+    
 </div>
 @endsection
