@@ -28,7 +28,7 @@ class ThreadController extends Controller
             return $threads;
         }
 
-        
+
         return view('threads.index',compact('threads'));
     }
 
@@ -78,7 +78,7 @@ class ThreadController extends Controller
 
         return view('threads.show',[
             'thread' => $thread,
-            'replies' => $thread->replies()->paginate(1)
+            'replies' => $thread->replies()->paginate(20)
         ]);
     }
 
@@ -119,12 +119,11 @@ class ThreadController extends Controller
 
 
     public function getThreads($filters, $channel){
-        $threads = Thread::latest()->filter($filters);
+        $threads = Thread::filter($filters)->latest();
 
         if($channel->exists) {
             $threads = $threads->where(['channel_id' => $channel->id]);
         }
-        dd($threads->toSql());
         
         $threads = $threads->get();
         return $threads;

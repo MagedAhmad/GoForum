@@ -76,13 +76,10 @@ class ReadThreadsTest extends TestCase
         // we get them in order
 
         $threadWithTwoReplies = create('App\Thread');
-        create('App\Reply',['thread_id' => $threadWithTwoReplies]);
-        create('App\Reply',['thread_id' => $threadWithTwoReplies]);
+        create('App\Reply',['thread_id' => $threadWithTwoReplies],2);
 
         $threadWithThreeReplies = create('App\Thread');
-        create('App\Reply',['thread_id' => $threadWithThreeReplies]);
-        create('App\Reply',['thread_id' => $threadWithThreeReplies]);
-        create('App\Reply',['thread_id' => $threadWithThreeReplies]);
+        create('App\Reply',['thread_id' => $threadWithThreeReplies],3);
 
         $threadWithNoReply = $this->thread;
 
