@@ -2,7 +2,7 @@
         <div class="card-header"> 
             <h5 class="level">
                 <b class="flex">
-                    <a href="#">{{$reply->user->name }}</a> 
+                    <a href="{{ route('profile',$thread->user->name)}}">{{$reply->user->name }}</a> 
                     said {{ $reply->created_at->diffForHumans()}} ...
 
                 </b> 
@@ -11,9 +11,9 @@
                     <button type="submit" class="btn btn-default" 
                         {{ $reply->isFavorited() ? 'disabled' : '' }} 
                         name="submit">
-                        
-                        {{ $reply->favorites()->count() }} 
-                        {{ str_plural('Favorite', $reply->favorites()->count() )}}
+
+                        {{ $reply->favorites_count }} 
+                        {{ str_plural('Favorite', $reply->favorites_count )}}
 
                     </button>
                 </form>
@@ -25,8 +25,7 @@
         <div class="card-body">
             <article>
                 <p>{{ $reply->body }}</p>
-                <hr>
-                
+                <hr>         
             </article>
         </div>
     </div>

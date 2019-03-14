@@ -7,9 +7,11 @@
             <div class="card">
                 <div class="card-header">Forum</div>
 
+
+                @foreach($threads as $thread)
+
                 <div class="card-body">
                     <article>
-                    @foreach($threads as $thread)
                         <div class="level">
 
                             <h3 class="flex">
@@ -21,10 +23,10 @@
                         
                         <p>{{ $thread->body }}</p>
                         <hr>
-                    @endforeach
                     </article>
-
                 </div>
+                @endforeach
+
             </div>
         </div>
     </div>

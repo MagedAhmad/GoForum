@@ -8,7 +8,8 @@ class Thread extends Model
 {
 
 	protected $guarded = [];
-	
+    
+    protected $with = ['channel', 'user'];
 
     protected static function boot(){
         parent::boot();
