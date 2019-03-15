@@ -11,11 +11,10 @@
 			</h1>
 		</div>
 
-		<div class="card">
-
+	    <div class="card">
             <div class="card-body">
                 @foreach($threads as $thread)
-            	
+                
                 <article>
                     <div class="level">
 
@@ -33,6 +32,7 @@
 
             </div>
         </div>
+            
 	</div>
 
 
