@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Forum</div>
+                <div class="card-header">All Threads</div>
 
 
-                @foreach($threads as $thread)
+                @forelse($threads as $thread)
 
                 <div class="card-body">
                     <article>
@@ -25,7 +25,10 @@
                         <hr>
                     </article>
                 </div>
-                @endforeach
+                @empty
+
+                <h4 style="margin:20px" class="text-center">No threads are available yet !</h4>
+                @endforelse
 
             </div>
         </div>

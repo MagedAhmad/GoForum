@@ -2,7 +2,7 @@
         <div class="card-header"> 
             <h5 class="level">
                 <b class="flex">
-                    <a href="{{ route('profile',$thread->user->name)}}">{{$reply->user->name }}</a> 
+                    <a href="{{ route('profile',$reply->user->name)}}">{{$reply->user->name }}</a> 
                     said {{ $reply->created_at->diffForHumans()}} ...
 
                 </b> 
