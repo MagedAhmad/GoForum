@@ -28,5 +28,14 @@
                 <hr>         
             </article>
         </div>
+
+        <div class="card-footer">
+            <form method="POST" action="/replies/{{$reply->id}}">
+                {{ csrf_field() }}
+                {{ method_field('DELETE')}}
+
+                <button class="btn btn-danger btn-sm" type="submit">DELETE</button>
+            </form>
+        </div>
     </div>
     <br>
