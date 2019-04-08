@@ -12,6 +12,9 @@ class Reply extends Model
 
     protected $with = ['user', 'favorites'];
 	
+    protected $appends  = [ 'favoritesCount', 'isFavorited', 'can_update'];
+
+
     public function user(){
     	return $this->belongsTo('App\User');
     }
@@ -24,5 +27,11 @@ class Reply extends Model
     public function path(){
         return $this->thread->path() . "#reply-" .$this->id;
     }
+
+    public function getCanUpdateAttribute()
+    {
+        return \Gate::allows('update', $this);
+    }
+
 
 }

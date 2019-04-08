@@ -71,7 +71,7 @@ class ParticipateInForumTest extends TestCase
         
     }
 
-    public function test_authorized_user_can_delete_his_threads() 
+    public function test_authorized_user_can_delete_his_reply() 
     {
         $this->signIn();
         $reply = create('App\Reply', ['user_id' => auth()->id()]);
@@ -82,6 +82,34 @@ class ParticipateInForumTest extends TestCase
         $this->assertDatabaseMissing('replies', $reply->toArray());
 
 
+    }
+
+
+    public function test_authorized_user_can_update_reply() 
+    {
+        $this->signIn();
+        $reply = create('App\Reply', ['user_id' => auth()->id()]);
+
+        $updatedReply = 'You changed!';
+        $this->patch('/replies/'. $reply->id, ['body' => $updatedReply ]);
+        
+        $this->assertDatabaseHas('replies', ['id' => $reply->id, 'body' => $updatedReply]);
+    }
+
+
+    public function test_unauthorized_users_cannot_update_reply()
+    {
+        $this->withExceptionHandling();
+        $reply = create('App\Reply');
+
+        $this->patch('/replies/'. $reply->id)
+            ->assertRedirect('/login');
+
+        $this->signIn();
+
+        $this->patch('/replies/'. $reply->id)
+            ->assertStatus(403);
+        
     }
 
 }

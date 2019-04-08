@@ -19,6 +19,19 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('open-iconic-master/font/css/open-iconic-bootstrap.css') }}" rel="stylesheet">
+
+
+    <script type="text/javascript">
+
+        window.App = {!! json_encode([
+            'csrfToken' => csrf_token(),
+            'signedIn' => auth()->check(),
+        ]) !!};
+        
+
+    </script>
+
     <style type="text/css">
         .level {
             display:flex;
@@ -26,6 +39,14 @@
         }
         .flex {
             flex:1;
+        }
+
+        .mr-1{
+            margin-right:1em;
+        }
+
+        [v-cloak] {
+            display: none;
         }
     </style>
 </head>
