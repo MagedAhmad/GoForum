@@ -31,13 +31,11 @@
 	                </div>
 	            </article>
 	        </div>
-	        <!-- @can('update', $reply) -->
 	        <div class="card-footer level"  v-if="data.can_update">
 	            <button class="btn btn-sm btn-info mr-1" @click="editing = true">Edit</button>
 	            <button class="btn btn-sm btn-danger" @click="destroy">Delete</button>
 	            
 	        </div>
-	        <!-- @endcan -->
 	    </div>
 	</div>
 </template>
