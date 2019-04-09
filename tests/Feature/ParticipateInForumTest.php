@@ -38,8 +38,8 @@ class ParticipateInForumTest extends TestCase
         
         $response = $this->post($this->thread->path().'/replies', $reply->toArray());
 
-        $this->get($this->thread->path())
-            ->assertSee($reply->body);
+        $this->get($this->thread->path());
+        $this->assertDatabaseHas('replies', ['body' => $reply->body]);
 
 
     }
