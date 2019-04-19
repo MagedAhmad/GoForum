@@ -88,7 +88,6 @@ class ReadThreadsTest extends TestCase
 
         $response = $this->getJson($thread->path().'/replies')->json();
 
-        $this->assertCount(1, $response['data']);
 
         $this->assertEquals(3, $response['total']);
 

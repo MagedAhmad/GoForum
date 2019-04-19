@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Thread;
 use App\Channel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
 
@@ -68,26 +69,20 @@ class ThreadController extends Controller
         ->with('flash', 'Thread created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Thread  $thread
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($channel, Thread $thread)
     {
+
+        $key = sprintf("users.%s.visits.%s", auth()->id(), $thread->id);
+        
+        cache()->forever($key, Carbon::now());
+
         return view('threads.show',[
             'thread' => $thread,
         ]);
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Thread  $thread
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($channel, Thread $thread)
     {
         if($this->authorize('update', $thread)){

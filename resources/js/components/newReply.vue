@@ -40,7 +40,7 @@
 					.then(({data}) => {
 						this.body = '';
 						this.$emit('created', data);
-						flash('Reply deleted!');
+						flash('Reply posted!');
 
 					});
 

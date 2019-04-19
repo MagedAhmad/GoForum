@@ -45,6 +45,7 @@ class ParticipateInForumTest extends TestCase
     }
 
 
+
     /** @test */
     public function test_a_reply_must_have_a_body()
     {
@@ -76,10 +77,9 @@ class ParticipateInForumTest extends TestCase
         $this->signIn();
         $reply = create('App\Reply', ['user_id' => auth()->id()]);
 
-        $this->delete('/replies/'. $reply->id)
-            ->assertStatus(302);
-        
-        $this->assertDatabaseMissing('replies', $reply->toArray());
+        $this->deleteJson('/replies/'. $reply->id);
+
+        $this->assertDatabaseMissing('replies', ['body' => $reply->body]);
 
 
     }

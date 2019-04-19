@@ -15,7 +15,14 @@
                         <div class="level">
 
                             <h3 class="flex">
-                                <a href="{{$thread->path()}}">{{ $thread->title }}</a>
+                                @if($thread->hasUpdatesFor())
+                                    <strong>
+                                        <a href="{{$thread->path()}}">{{ $thread->title }}</a>
+                                    </strong>
+                                @else
+                                    <a href="{{$thread->path()}}">{{ $thread->title }}</a>
+
+                                @endif
                             </h3>
 
                             <strong>{{$thread->replies_count}} {{str_plural('Reply', $thread->replies_count)}}</strong>

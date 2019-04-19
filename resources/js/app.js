@@ -25,6 +25,7 @@ window.Vue = require('vue');
 
 Vue.component('flash', require('./components/flash.vue').default);
 Vue.component('paginator', require('./components/paginator.vue').default);
+Vue.component('notifications', require('./components/notifications.vue').default);
 
 Vue.component('thread-view', require('./pages/thread.vue').default);
 

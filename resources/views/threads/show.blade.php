@@ -50,6 +50,8 @@
                         <p>This thread was published {{$thread->created_at->diffForHumans()}} by 
                             <a href="{{ route('profile',$thread->user->name)}}">{{$thread->user->name}}</a>, and currently has <span v-text="repliesCount"></span> {{ str_plural('Comment', $thread->replies_count )}}
                         </p>
+
+                        <subscripe-button :active="{{ json_encode($thread->is_subscriped_to) }}"></subscripe-button>
                     </div>
                 </div>
             </div>

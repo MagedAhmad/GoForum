@@ -22,7 +22,7 @@ class ReplyController extends Controller
      */
     public function index($channelId, Thread $thread)   
     {
-        return $thread->replies()->paginate(1);
+        return $thread->replies()->paginate(10);
     }
 
     /**
@@ -51,6 +51,9 @@ class ReplyController extends Controller
             'body' => request('body'),
             'user_id' => auth()->id(),
         ]);
+
+
+
         
         if(request()->expectsJson()){
             return $reply->load('user');
