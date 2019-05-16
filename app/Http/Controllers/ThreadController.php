@@ -7,6 +7,8 @@ use App\Channel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
+use App\Rules\SpamFree;
+
 
 class ThreadController extends Controller
 {
@@ -52,7 +54,7 @@ class ThreadController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'title' => 'required',
+            'title' => ['required', new SpamFree],
             'body' => 'required',
             'channel_id' => 'required|exists:channels,id',
         ]); 
@@ -76,10 +78,11 @@ class ThreadController extends Controller
         $key = sprintf("users.%s.visits.%s", auth()->id(), $thread->id);
         
         cache()->forever($key, Carbon::now());
-
+        
         return view('threads.show',[
             'thread' => $thread,
         ]);
+
     }
 
 

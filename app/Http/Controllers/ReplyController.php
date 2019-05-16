@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+
+
 use App\Reply;
+use App\Rules\SpamFree;
 use App\Thread;
 use Illuminate\Http\Request;
 
 class ReplyController extends Controller
 {
-
+    
     public function __construct(){
         $this->middleware('auth',['except' => 'index']);
     }
@@ -42,24 +45,21 @@ class ReplyController extends Controller
     public function store($channelId, Thread $thread)
     {
 
-        $this->validate(request(),[
-            'body' => 'required',
-        ]);
+        try {
+            $this->authorize('create', new Reply);
 
+            $this->validate(request(),['body' => ['required', new SpamFree]]);
 
-        $reply = $thread->addReply([
-            'body' => request('body'),
-            'user_id' => auth()->id(),
-        ]);
-
-
-
-        
-        if(request()->expectsJson()){
-            return $reply->load('user');
+            $reply = $thread->addReply([
+                'body' => request('body'),
+                'user_id' => auth()->id(),
+            ]);
+        }catch(\Exception $e) {
+            return response('Your reply couldnot be saved at this time!', 422);
         }
+        
+        return $reply->load('user');
 
-        return back();
     }
 
     /**
@@ -91,11 +91,17 @@ class ReplyController extends Controller
      * @param  \App\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reply $reply)
+    public function update(Reply $reply)
     {
-        $this->authorize('update', $reply);
+        try {
+            $this->authorize('update', $reply);
 
-        $reply->update(request(['body']));
+            $reply->update(request(['body']));
+    
+        }catch(\Exception $e) {
+            return response('Your reply couldnot be saved at this time!', 422);
+        } 
+        
     }
 
     /**
@@ -114,4 +120,6 @@ class ReplyController extends Controller
         return back();
 
     }
+
+  
 }

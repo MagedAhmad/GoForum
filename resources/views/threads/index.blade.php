@@ -15,7 +15,7 @@
                         <div class="level">
 
                             <h3 class="flex">
-                                @if($thread->hasUpdatesFor())
+                                @if(auth()->check() && $thread->hasUpdatesFor())
                                     <strong>
                                         <a href="{{$thread->path()}}">{{ $thread->title }}</a>
                                     </strong>

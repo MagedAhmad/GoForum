@@ -40,4 +40,10 @@ return [
         ],
     ],
 
+    'facebook' => [
+       'client_id' => '591658921318945', //Facebook API
+       'client_secret' => '54bc31a2e607419367f044a20a080598', //Facebook Secret
+       'redirect' => 'http://laravel.localhost/login/facebook/callback',
+    ],
+
 ];

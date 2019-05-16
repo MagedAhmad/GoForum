@@ -40,3 +40,10 @@ Route::delete('/threads/{channel}/{thread}/subscriptions','ThreadSubscriptionCon
 Route::get('/profiles/{user}', 'ProfileController@show')->name('profile');
 Route::delete('/profiles/{user}/notifications/{notification}', 'UserNotificationsController@destroy');
 Route::get('/profiles/{user}/notifications', 'UserNotificationsController@index');
+
+
+
+
+
+Route::get('/login/{social}','Auth\LoginController@socialLogin')->where('social','twitter|facebook|linkedin|google|github|bitbucket');
+Route::get('/login/{social}/callback','Auth\LoginController@handleProviderCallback')->where('social','twitter|facebook|linkedin|google|github|bitbucket');

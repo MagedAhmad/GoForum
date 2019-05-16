@@ -68,15 +68,13 @@
 				});
 
 				this.editing  = false;
-				flash('Updated!');
+				flash('Successfully Updated!', 'success');
 			},
 
 			destroy(){
 				axios.delete('/replies/' + this.data.id);
 
 				this.$emit('deleted', this.data.id);
-
-				
 
 			}
 		}

@@ -37,10 +37,13 @@
 
 			add() {
 				axios.post(this.endpoint, {body: this.body})
+					.catch(error  => {
+						flash(error.response.data, "danger");
+					})
 					.then(({data}) => {
 						this.body = '';
 						this.$emit('created', data);
-						flash('Reply posted!');
+						flash('Reply posted!', "success");
 
 					});
 

@@ -6,6 +6,8 @@ export default {
 
 			this.$emit('removed');
 
+			flash('This item has been deleted', 'danger');
+
 		},
 
 		add(item) {
