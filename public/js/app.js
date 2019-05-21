@@ -38090,11 +38090,7 @@ var render = function() {
               _c("a", {
                 staticClass: "dropdown-item",
                 attrs: { href: notification.data.link },
-                domProps: {
-                  textContent: _vm._s(
-                    "New reply :" + notification.data.reply.body
-                  )
-                },
+                domProps: { textContent: _vm._s(notification.data.message) },
                 on: {
                   click: function($event) {
                     return _vm.markAsRead(notification)

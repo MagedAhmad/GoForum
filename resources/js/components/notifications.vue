@@ -8,7 +8,7 @@
           <a class="dropdown-item" 
             :href="notification.data.link" 
             @click="markAsRead(notification)"
-            v-text=" 'New reply :' + notification.data.reply.body">
+            v-text="notification.data.message">
           </a>
           
         </li>

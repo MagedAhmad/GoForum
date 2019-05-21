@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 
 
+use App\Http\Requests\CreatePostRequest;
+use App\Notifications\YouWereMentioned;
 use App\Reply;
-use App\Rules\SpamFree;
 use App\Thread;
+use App\User;
+use Gate;
 use Illuminate\Http\Request;
 
 class ReplyController extends Controller
@@ -42,23 +45,13 @@ class ReplyController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store($channelId, Thread $thread)
+    public function store($channelId, Thread $thread, CreatePostRequest $request)
     {
 
-        try {
-            $this->authorize('create', new Reply);
-
-            $this->validate(request(),['body' => ['required', new SpamFree]]);
-
-            $reply = $thread->addReply([
-                'body' => request('body'),
-                'user_id' => auth()->id(),
-            ]);
-        }catch(\Exception $e) {
-            return response('Your reply couldnot be saved at this time!', 422);
-        }
-        
-        return $reply->load('user');
+        return $thread->addReply([
+            'body' => request('body'),
+            'user_id' => auth()->id(),
+        ])->load('user');
 
     }
 
