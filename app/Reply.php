@@ -42,6 +42,23 @@ class Reply extends Model
     	return $this->belongsTo('App\Thread');
     }
 
+
+
+    /**
+     * Set the body attribute.
+     *
+     * @param string $body
+     */
+    public function setBodyAttribute($body)
+    {
+        $this->attributes['body'] = preg_replace(
+            '/@([\w\-]+)/',
+            '<a href="/profiles/$1">$0</a>',
+            $body
+        );
+    }
+    
+
     public function path(){
         return $this->thread->path() . "#reply-" .$this->id;
     }

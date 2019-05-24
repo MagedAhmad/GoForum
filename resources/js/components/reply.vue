@@ -5,7 +5,7 @@
 	            <h5 class="level">
 	                <b class="flex">
 	                    <a :href="'/profile/'+ this.data.user.name" v-text="this.data.user.name"></a> 
-	                    said <span v-text="this.data.created_at"></span> ...
+	                    said <span v-text="moment(this.data.created_at).fromNow()"></span> ...
 
 	                </b>
 	                <div v-if="signedIn">
@@ -26,9 +26,8 @@
 	                        <button class="btn btn-link btn-sm" @click="editing = false">Cancel</button>
 	                    </div>
 	                </div>
-	                <div v-else>
-	                    <p v-text="body"></p>                
-	                </div>
+	                <div v-else v-html="body"></div>
+	                
 	            </article>
 	        </div>
 	        <div class="card-footer level"  v-if="data.can_update">
@@ -43,6 +42,7 @@
 <script>
 
 	import favorite from './favorite.vue';
+	var moment = require('moment');
 
 	export default {
 		props: ['data'],
@@ -51,15 +51,18 @@
 			return {
 				editing: false,
 				body : this.data.body,
+				moment: moment
+
 			};
 		},
+
+
+
 
 		computed: {
 			signedIn() {
 				return window.App.signedIn;
 			},
-
-			
 		},
 		methods : {
 			update() {

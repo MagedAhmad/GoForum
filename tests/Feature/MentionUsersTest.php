@@ -13,6 +13,8 @@ class MentionUsersTest extends TestCase
 
     public function test_user_can_mention_other_users()
     {
+        $this->withExceptionHandling();
+        
         $JohnDoe = create('App\User');
 
         $this->signIn($JohnDoe);
@@ -28,6 +30,5 @@ class MentionUsersTest extends TestCase
 
 
         $this->assertCount(1, $JaneDoe->notifications);
-
     }
 }

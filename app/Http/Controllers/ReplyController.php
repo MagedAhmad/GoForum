@@ -7,9 +7,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePostRequest;
 use App\Notifications\YouWereMentioned;
 use App\Reply;
+use App\Rules\SpamFree;
 use App\Thread;
 use App\User;
-use Gate;
 use Illuminate\Http\Request;
 
 class ReplyController extends Controller
@@ -86,14 +86,13 @@ class ReplyController extends Controller
      */
     public function update(Reply $reply)
     {
-        try {
-            $this->authorize('update', $reply);
+        $this->authorize('update', $reply);
 
-            $reply->update(request(['body']));
+        $this->validate(request(), ['body' => ['required', new SpamFree]]);
+
+        $reply->update(request(['body']));
     
-        }catch(\Exception $e) {
-            return response('Your reply couldnot be saved at this time!', 422);
-        } 
+        
         
     }
 

@@ -31,8 +31,19 @@ class ReplyTest extends TestCase
     	$this->assertFalse($reply->wasJustPublished());
     }
     
+    /** @test */
+    public function test_wraps_mentioned_users_in_body_within_anchor_tags()
+    {
+        $reply = create('App\Reply', ['body' => 'Hello @test']);
 
-    
+
+        $this->assertEquals(
+            'Hello <a href="/profiles/test">@test</a>',
+            $reply->body
+        );
+        
+    }
+        
         
         
 }

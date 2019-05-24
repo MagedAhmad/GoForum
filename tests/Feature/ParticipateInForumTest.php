@@ -109,7 +109,7 @@ class ParticipateInForumTest extends TestCase
         $this->signIn();
 
         $this->patch('/replies/'. $reply->id)
-            ->assertStatus(422);
+            ->assertStatus(403);
         
     }
 
@@ -145,5 +145,6 @@ class ParticipateInForumTest extends TestCase
             ->assertStatus(429);
 
     }
+
 
 }
