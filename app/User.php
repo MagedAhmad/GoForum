@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'avatar_path'
     ];
 
     /**
@@ -64,6 +64,12 @@ class User extends Authenticatable
         
         cache()->forever($key, Carbon::now());
             
+    }
+    
+
+    public function getAvatarPathAttribute($avatar) {
+        if(!$avatar) return asset('storage/avatars/default.svg');
+        return asset('storage/' . $avatar ?: 'storage/avatars/default.svg');
     }
     
     

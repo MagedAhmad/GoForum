@@ -1,8 +1,10 @@
 @extends('layouts.app')
+
 @section('styles')
 
 <link rel="stylesheet" type="text/css" href="/css/vendor/jquery.atwho.css">
 @endsection
+
 @section('content')
 <div class="container">
     <thread-view inline-template :initial-replies-count="{{ $thread->replies_count }}">
@@ -12,6 +14,7 @@
                     <div class="card-header">
                         <h5 class="level">
                             <b class="flex">
+                                <img src="{{$thread->user->avatar_path}}" width="25" height="25" alt="{{$thread->user->name}}">
                                 <a href="{{ route('profile',$thread->user->name)}}">{{$thread->user->name }}</a> 
                                 Posted {{ $thread->title }} ...
 

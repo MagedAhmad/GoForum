@@ -38,7 +38,12 @@
             display:flex;
             align-items: center;
         }
+
         .flex {
+            display:flex;
+        }
+
+        .flex-1 {
             flex:1;
         }
 
@@ -48,6 +53,10 @@
 
         [v-cloak] {
             display: none;
+        }
+
+        .justify-between {
+            justify-content: space-between;
         }
     </style>
     @yield('styles')

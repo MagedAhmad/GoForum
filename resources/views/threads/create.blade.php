@@ -12,7 +12,6 @@
                         <form method="POST" action="/threads">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label>title</label>
                                 <select name="channel_id" class="form-control">
                                     <option>Choose Channel</option>
                                     @foreach($channels as $channel)

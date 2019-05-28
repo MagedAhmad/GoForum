@@ -9,6 +9,11 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+Vue.prototype.authorize = function(handler) {
+	let user = window.App.user;
+
+	return user ? handler(user) : false;
+}
 
 
 
@@ -29,6 +34,7 @@ Vue.component('notifications', require('./components/notifications.vue').default
 
 Vue.component('thread-view', require('./pages/thread.vue').default);
 
+Vue.component('avatar-form', require('./components/avatarForm.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
