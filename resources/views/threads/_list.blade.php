@@ -26,7 +26,8 @@
             <hr>
         </article>
     </div>
-@empty
 </div>
+@empty
+
 <h4 style="margin:20px" class="text-center">No threads are available yet !</h4>
 @endforelse

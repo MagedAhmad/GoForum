@@ -10,6 +10,7 @@
             return {
                 body: '',
                 level: 'success',
+                
                 show: false,
             }
         },

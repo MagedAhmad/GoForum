@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
 use App\Rules\SpamFree;
+use App\Trending;
+
 
 
 class ThreadController extends Controller
@@ -22,7 +24,7 @@ class ThreadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Channel $channel,ThreadFilters $filters)
+    public function index(Channel $channel,ThreadFilters $filters, Trending $trending)
     {
 
         $threads = $this->getThreads($filters, $channel);
@@ -32,7 +34,10 @@ class ThreadController extends Controller
         }
 
 
-        return view('threads.index',compact('threads'));
+        return view('threads.index',[
+            'threads' => $threads,
+            'trending' => $trending->get()
+        ]);
     }
 
     /**
@@ -72,12 +77,14 @@ class ThreadController extends Controller
     }
 
 
-    public function show($channel, Thread $thread)
+    public function show($channel, Thread $thread, Trending $trending)
     {
 
         if(auth()->check()){
             auth()->user()->read($thread);
         }
+
+        $trending->push($thread);
         
         return view('threads.show', compact('thread'));
 
