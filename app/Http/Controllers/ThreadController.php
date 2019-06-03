@@ -58,6 +58,7 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request,[
             'title' => ['required', new SpamFree],
             'body' => 'required',
@@ -69,8 +70,10 @@ class ThreadController extends Controller
             'user_id' => auth()->id(),
             'channel_id' => request('channel_id'),
             'title' => request('title'),
-            'body' => request('body')
+            'body' => request('body'),
+            'slug' => request('title')
         ]);
+
 
         return redirect($thread->path())
         ->with('flash', 'Thread created successfully');
@@ -85,6 +88,8 @@ class ThreadController extends Controller
         }
 
         $trending->push($thread);
+
+        $thread->recordVisit();
         
         return view('threads.show', compact('thread'));
 

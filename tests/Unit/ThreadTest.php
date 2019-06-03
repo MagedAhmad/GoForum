@@ -5,6 +5,9 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
+use Illuminate\Support\Facades\Redis;
+
+
 class ThreadTest extends TestCase
 {
     use DatabaseMigrations;
@@ -51,25 +54,22 @@ class ThreadTest extends TestCase
 
 
     /** @test */
-    public function test_a_thread_can_make_a_string_path()
+    public function test_a_thread_can_return_path()
     {
         $thread = create('App\Thread');
 
-        $this->assertEquals('/threads/'. $thread->channel->name. '/'. $thread->id, $thread->path());
+        $this->assertEquals("/threads/{$thread->channel->name}/{$thread->slug}", $thread->path());
     }
 
 
     public function test_a_thread_can_be_subscribed() {
         
-        // given we have a thread
         $thread = create('App\Thread');
 
-        // and a signed in user
         $this->signIn();
-        // when he subscribes to the thread
+
         $thread->subscripe();
 
-        // we can fetch all subscribed threads
 
         $this->assertEquals(1,
             $thread->subscriptions()->where(['user_id' => auth()->id()])->count());
@@ -79,15 +79,11 @@ class ThreadTest extends TestCase
 
     public function test_a_thread_can_be_unsubscribed() {
         
-        // given we have a thread
         $thread = create('App\Thread');
 
-        // and a signed in user
         $this->signIn();
-        // when he subscribes to the thread
+        
         $thread->subscripe();
-
-        // we can fetch all subscribed threads
 
         $this->assertEquals(1,
             $thread->subscriptions()->count());
@@ -115,6 +111,24 @@ class ThreadTest extends TestCase
     }
     
     
+
+    public function test_it_records_each_visit() {
+
+        $thread = make('App\Thread', ['id' => 1]);
+        
+        $thread->resetVisits();
+
+        $this->assertSame(0, $thread->visits());
+
+        $thread->recordVisit();
+        
+        $this->assertEquals(1, $thread->visits());
+
+        $thread->recordVisit();
+        
+        $this->assertEquals(2, $thread->visits());
+
+    }
         
         
 }

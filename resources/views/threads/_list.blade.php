@@ -26,7 +26,11 @@
             <hr>
         </article>
     </div>
+    <div class="card-footer">
+        {{ $thread->visits() }} Visits
+    </div>
 </div>
+<br>
 @empty
 
 <h4 style="margin:20px" class="text-center">No threads are available yet !</h4>

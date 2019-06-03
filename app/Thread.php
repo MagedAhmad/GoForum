@@ -8,10 +8,13 @@ use App\Notifications\ThreadWasUpdated;
 use App\Providers\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
 
+
+
+
 class Thread extends Model
 {
 
-    use RecordsActivity;
+    use RecordsActivity, RecordsVisits;
 
 	protected $guarded = [];
     
@@ -33,7 +36,7 @@ class Thread extends Model
 
 
     public function path(){
-    	return '/threads/'. $this->channel->name . '/' .$this->id ;
+    	return '/threads/'. $this->channel->name . '/' . $this->slug ;
     }
 
 
@@ -109,6 +112,35 @@ class Thread extends Model
         $key = sprintf("users.%s.visits.%s", auth()->id(), $this->id);
         return $this->updated_at > cache($key);
     }
+    
+
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
+    public function setSlugAttribute($value) {
+        if(static::whereSlug($slug = str_slug($value))->exists()){
+            $slug = $this->incrementSlug($slug);
+        }
+
+        $this->attributes['slug'] = $slug;
+    }
+
+
+    public function incrementSlug($slug) {
+        
+        $original = $slug;
+        $count = 2;
+
+        while(static::whereSlug($slug)->exists()) {
+            $slug = "{$original}-" . $count++;
+        }
+
+        return $slug;
+
+    }
+
+
     
 
 }
