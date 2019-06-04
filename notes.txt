@@ -1,4 +1,3 @@
-
 Email validation 
 Slugs
 authorization in vue
