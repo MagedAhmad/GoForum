@@ -43,6 +43,20 @@ class ReplyTest extends TestCase
         );
         
     }
+
+
+    public function test_reply_knows_if_its_the_best_reply()
+    {
+        $reply = create('App\Reply');
+        
+        $this->assertFalse($reply->isBest());
+
+        $reply->thread->update(['best_reply_id' => $reply->id]);
+
+        $this->assertTrue($reply->isBest());
+
+
+    }
         
         
         

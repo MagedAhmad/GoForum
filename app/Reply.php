@@ -13,7 +13,7 @@ class Reply extends Model
 
     protected $with = ['user', 'favorites'];
 	
-    protected $appends  = [ 'favoritesCount', 'isFavorited', 'can_update'];
+    protected $appends  = [ 'favoritesCount', 'isFavorited', 'can_update', 'isBest'];
 
 
     protected static function boot(){
@@ -27,7 +27,7 @@ class Reply extends Model
 
         static::deleted(function($reply){
             $reply->thread->decrement('replies_count');
-            
+
         });
         
     }
@@ -73,5 +73,14 @@ class Reply extends Model
         return $this->created_at->gt(Carbon::now()->subMinute());    
     }
     
+
+    public function isBest() {
+        return $this->thread->best_reply_id == $this->id;
+    }
+
+    public function getIsBestAttribute()
+    {
+        return $this->isBest();
+    }
 
 }

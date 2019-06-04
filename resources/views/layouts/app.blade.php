@@ -58,6 +58,14 @@
         .justify-between {
             justify-content: space-between;
         }
+
+        .ml-a {
+            margin-left:auto;
+        }
+
+        .card-success {
+            background-color: #e6ffd9;
+        }
     </style>
     @yield('styles')
 </head>

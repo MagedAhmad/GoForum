@@ -3,7 +3,6 @@
 namespace App;
 
 
-use App\Activity;
 use App\Notifications\ThreadWasUpdated;
 use App\Providers\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
@@ -141,6 +140,9 @@ class Thread extends Model
     }
 
 
-    
+    public function markBestReply(Reply $reply)
+    {
+        $this->update(['best_reply_id' => $reply->id]);
+    }
 
 }

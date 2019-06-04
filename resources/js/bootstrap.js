@@ -31,6 +31,12 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * a simple convenience so we don't have to attach every token manually.
  */
 
+
+
+
+
+
+
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
@@ -40,6 +46,24 @@ if (token) {
 }
 
 window.Vue = require('vue');
+
+
+let authorization = require('./authorization');
+
+Vue.prototype.authorize = function(...params) {
+    if(!window.App.signedIn) return false;
+
+    if(typeof params[0] === 'string') {
+        return authorization[params[0]](params[1]);
+    }
+
+    return params[0](window.App.user);
+    
+}
+
+
+
+
 
 window.events = new Vue();
 

@@ -18,6 +18,7 @@ class Trending {
 	}
 
 	public function get() {
+
         return array_map('json_decode', Redis::zrevrange($this->cachekey(), 0, 4));
 	}
 
@@ -32,7 +33,7 @@ class Trending {
 
 
 	public function reset() {
-   		Redis::del('test_trending_threads');
+   		Redis::del($this->cachekey());
 	}
 
 

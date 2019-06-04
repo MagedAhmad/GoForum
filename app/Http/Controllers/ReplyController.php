@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\CreatePostRequest;
-use App\Notifications\YouWereMentioned;
 use App\Reply;
 use App\Rules\SpamFree;
 use App\Thread;
@@ -105,6 +104,8 @@ class ReplyController extends Controller
     public function destroy(Reply $reply)
     {
         $this->authorize('update', $reply);
+       
+
         if(request()->expectsJson()) {
             $reply->delete();
             return response(['status' => 'deleted successfully']);
