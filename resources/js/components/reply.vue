@@ -9,7 +9,7 @@
 
 	                </b>
 	                <div v-if="signedIn">
-		                <favorite :reply="data"></favorite>                	
+		                <favorite :reply="reply"></favorite>                	
 	                </div>
 
 	            </h5>

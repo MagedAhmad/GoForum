@@ -53,6 +53,13 @@ class User extends Authenticatable
     }
 
 
+    public function isAdmin()
+    {
+        return in_array($this->name, ['Maged']);
+    }
+
+
+
     public function lastReply() {
         return $this->hasOne(Reply::class)->latest();    
     }

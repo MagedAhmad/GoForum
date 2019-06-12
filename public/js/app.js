@@ -3369,6 +3369,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -3559,15 +3562,52 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['initialRepliesCount'],
+  props: ['thread'],
   components: {
     replies: _components_replies_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     subscripeButton: _components_subscripeButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
-      repliesCount: this.initialRepliesCount
+      repliesCount: this.thread.replies_count,
+      locked: this.thread.lock,
+      editing: false,
+      form: {
+        title: this.thread.title,
+        body: this.thread.body
+      },
+      title: this.thread.title,
+      body: this.thread.body
     };
+  },
+  computed: {
+    signedIn: function signedIn() {
+      return window.App.signedIn;
+    }
+  },
+  methods: {
+    toggleLock: function toggleLock() {
+      axios[this.locked ? 'delete' : 'post']('/lock-threads/' + this.thread.slug);
+      this.locked = !this.locked;
+    },
+    update: function update() {
+      var _this = this;
+
+      var uri = "/threads/".concat(this.thread.channel.id, "/").concat(this.thread.slug);
+      axios.patch(uri, this.form).then(function () {
+        _this.editing = false;
+        _this.title = _this.form.title;
+        _this.body = _this.form.body;
+        flash('Your thread has been updated.');
+      });
+    },
+    reset: function reset() {
+      this.form = {
+        title: this.thread.title,
+        body: this.thread.body
+      };
+      this.editing = false;
+    }
   }
 });
 
@@ -57889,7 +57929,13 @@ var render = function() {
         on: { changed: _vm.fetch }
       }),
       _vm._v(" "),
-      _c("div", [_c("new-reply", { on: { created: _vm.add } })], 1)
+      !_vm.$parent.locked
+        ? _c("div", [_c("new-reply", { on: { created: _vm.add } })], 1)
+        : _c("div", [
+            _c("p", [
+              _vm._v("This thread has been locked. No comment are allowed.")
+            ])
+          ])
     ],
     2
   )
@@ -57944,7 +57990,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _vm.signedIn
-              ? _c("div", [_c("favorite", { attrs: { reply: _vm.data } })], 1)
+              ? _c("div", [_c("favorite", { attrs: { reply: _vm.reply } })], 1)
               : _vm._e()
           ])
         ]),
@@ -70269,6 +70315,9 @@ module.exports = {
   },
   updateThread: function updateThread(thread) {
     return thread.user.id === user.id;
+  },
+  isAdmin: function isAdmin() {
+    return ['Maged'].includes(user.name);
   }
 };
 

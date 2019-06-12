@@ -7,38 +7,11 @@
 
 @section('content')
 <div class="container">
-    <thread-view inline-template :initial-replies-count="{{ $thread->replies_count }}">
+    <thread-view inline-template  :thread="{{ $thread }}">
         <div class="row">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="level">
-                            <b class="flex">
-                                <img src="{{$thread->user->avatar_path}}" width="25" height="25">
-                                <a href="{{ route('profile',$thread->user->name)}}">{{$thread->user->name }}</a> 
-                                Posted {{ $thread->title }} ...
-
-                            </b>
-                            @can('update', $thread)
-                            <form method="POST" action="{{$thread->path()}}">
-                                {{ csrf_field()}}
-                                {{ method_field('DELETE')}}
-                                <button type="submit" class="btn btn-link">
-                                    Delete Thread
-                                </button>
-                            </form>
-                            @endcan
-
-                        </h5>
-                    </div>  
-
-                    <div class="card-body">
-                        <article>
-                            <p>{{ $thread->body }}</p>
-                            <hr>
-                            
-                        </article>
-                    </div>
+                <div v-cloak>
+                    @include('threads._topic')
                 </div>
                 <br>
 
@@ -57,7 +30,8 @@
                             <a href="{{ route('profile',$thread->user->name)}}">{{$thread->user->name}}</a>, and currently has <span v-text="repliesCount"></span> {{ str_plural('Comment', $thread->replies_count )}}
                         </p>
 
-                        <subscripe-button :active="{{ json_encode($thread->is_subscriped_to) }}"></subscripe-button>
+                        <subscripe-button :active="{{ json_encode($thread->is_subscriped_to) }}" v-if="signedIn"></subscripe-button>
+                        <button class="btn btn-danger" @click="toggleLock" v-if="authorize('isAdmin')" v-text="locked ? 'Unlock' : 'Lock'"></button>
                     </div>
                 </div>
             </div>

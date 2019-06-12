@@ -6,5 +6,9 @@ let user = window.App.user;
         },
         updateThread(thread) {
             return thread.user.id === user.id;
+        },
+
+        isAdmin() {
+            return ['Maged'].includes(user.name);
         }
     };

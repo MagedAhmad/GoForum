@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 
 class ReplyController extends Controller
 {
-    
+
     public function __construct(){
         $this->middleware('auth',['except' => 'index']);
     }
@@ -46,6 +46,9 @@ class ReplyController extends Controller
      */
     public function store($channelId, Thread $thread, CreatePostRequest $request)
     {
+        if($thread->lock) {
+            return response('Thread is locked', 422);
+        }
 
         return $thread->addReply([
             'body' => request('body'),

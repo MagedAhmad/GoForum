@@ -129,6 +129,7 @@ class ThreadTest extends TestCase
         $this->assertEquals(2, $thread->visits());
 
     }
-        
+    
+
         
 }

@@ -19,6 +19,7 @@ class Thread extends Model
     
     protected $with = ['channel', 'user'];
 
+    protected $casts = ['lock' => 'boolean'];
 
     protected $appends = ['isSubscripedTo'];
 
@@ -138,6 +139,7 @@ class Thread extends Model
         return $slug;
 
     }
+
 
 
     public function markBestReply(Reply $reply)

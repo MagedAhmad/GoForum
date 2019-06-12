@@ -4,11 +4,50 @@
 
 
 	export default {
-		props: ['initialRepliesCount'],
+		props: ['thread'],
 		components: { replies, subscripeButton },
 		data() {
 			return {
-				repliesCount : this.initialRepliesCount,
+				repliesCount : this.thread.replies_count,
+				locked : this.thread.lock,
+				editing: false,
+				form: {
+					title: this.thread.title,
+					body: this.thread.body
+				},
+				title: this.thread.title,
+				body: this.thread.body,
+			}
+		},
+		computed: {
+			signedIn() {
+				return window.App.signedIn;
+			}
+		},
+
+		methods: {
+			toggleLock() {
+				axios[this.locked ? 'delete' : 'post']('/lock-threads/' + this.thread.slug);
+
+				this.locked = !this.locked;
+			},
+			update() {
+				let uri = `/threads/${this.thread.channel.id}/${this.thread.slug}`;
+
+				axios.patch(uri, this.form).then(() => {
+					this.editing = false;
+					this.title = this.form.title;
+					this.body = this.form.body;
+					flash('Your thread has been updated.');
+				});
+			},
+			reset() {
+				this.form = {
+					title: this.thread.title,
+					body: this.thread.body
+				};
+
+				this.editing = false;
 			}
 		},
 
