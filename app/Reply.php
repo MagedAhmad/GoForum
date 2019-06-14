@@ -22,11 +22,14 @@ class Reply extends Model
 
         static::created(function($reply){
             $reply->thread->increment('replies_count');
-            
+
+            (new Reputation)->award($reply->user, 'created_reply');
+    
         });
 
         static::deleted(function($reply){
             $reply->thread->decrement('replies_count');
+            (new Reputation)->reduce($reply->user, 'created_reply');
 
         });
         

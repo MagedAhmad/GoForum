@@ -3015,6 +3015,9 @@ __webpack_require__.r(__webpack_exports__);
       return this.authorize(function (user) {
         return user.id === _this.user.id;
       });
+    },
+    reputation: function reputation() {
+      return this.user.reputation + ' XP';
     }
   },
   methods: {
@@ -57661,7 +57664,8 @@ var render = function() {
         attrs: { src: _vm.avatar, width: "50", height: "50" }
       }),
       _vm._v(" "),
-      _c("h1", { domProps: { textContent: _vm._s(_vm.user.name) } })
+      _c("h1", { domProps: { textContent: _vm._s(_vm.user.name) } }),
+      _c("small", { domProps: { textContent: _vm._s(_vm.reputation) } })
     ]),
     _vm._v(" "),
     _vm.canUpdate

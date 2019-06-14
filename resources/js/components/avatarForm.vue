@@ -3,7 +3,7 @@
 		<div class="flex">
             <img class="mr-1" :src="avatar" width="50" height="50">
 
-            <h1 v-text="user.name"></h1>
+            <h1 v-text="user.name"></h1><small v-text="reputation"></small>
 
         </div>
         
@@ -27,6 +27,9 @@
 		computed: {
 			canUpdate() {
 				return this.authorize(user => user.id === this.user.id);
+			},
+			reputation() {
+				return this.user.reputation + ' XP';
 			}
 		}, 
 		methods: {

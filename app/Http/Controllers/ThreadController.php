@@ -10,7 +10,6 @@ use App\Rules\SpamFree;
 use App\Trending;
 
 
-
 class ThreadController extends Controller
 {
 
@@ -57,7 +56,6 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         $this->validate($request,[
             'title' => ['required', new SpamFree],
             'body' => 'required',
@@ -73,7 +71,7 @@ class ThreadController extends Controller
             'slug' => request('title')
         ]);
 
-
+        
         return redirect($thread->path())
         ->with('flash', 'Thread created successfully');
     }

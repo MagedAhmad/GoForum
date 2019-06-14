@@ -7,7 +7,7 @@ use App\Notifications\ThreadWasUpdated;
 use App\Providers\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
 
-
+use App\Reputation;
 
 
 class Thread extends Model
@@ -29,7 +29,14 @@ class Thread extends Model
 
         static::deleting(function($thread){
             $thread->replies->each->delete();
+            (new Reputation)->reduce($thread->user, 'created_thread');
+
             
+        });
+
+        static::created(function($thread) {
+            (new Reputation)->award($thread->user, 'created_thread');
+
         });
         
     }
@@ -144,6 +151,8 @@ class Thread extends Model
 
     public function markBestReply(Reply $reply)
     {
+        (new Reputation)->award($reply->user, 'best_reply');
+
         $this->update(['best_reply_id' => $reply->id]);
     }
 

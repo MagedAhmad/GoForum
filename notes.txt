@@ -1,3 +1,5 @@
 Email validation 
 Slugs
 authorization in vue
+Search
+sanitizing
