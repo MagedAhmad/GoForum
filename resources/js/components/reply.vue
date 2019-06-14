@@ -20,7 +20,7 @@
 	            <article>
 	                <div v-if="editing">
 	                    
-	                    <textarea class="form-control" v-model="body"></textarea>
+						<wysiwyg name="body" v-model="body"></wysiwyg>
 	                    <div class="form-group">
 	                        <button class="btn btn-primary btn-sm" @click="update">Update</button>
 	                        <button class="btn btn-link btn-sm" @click="editing = false">Cancel</button>

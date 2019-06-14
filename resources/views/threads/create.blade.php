@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('styles')
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.1.1/trix.css">
+
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -25,7 +31,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Body</label>
-                                <textarea class="form-control" name="body">{{old('body')}}</textarea>       
+                                <!-- <textarea class="form-control" name="body">{{old('body')}}</textarea>        -->
+                                <wysiwyg name="body"></wysiwyg>
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary" name="submit" value="Publish">

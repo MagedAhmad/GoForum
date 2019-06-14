@@ -10,7 +10,7 @@
 
         <div class="card-body">
             <article>
-                <textarea rows="10" class="form-control" v-model="form.body"></textarea>
+                <wysiwyg name="body" v-model="form.body"></wysiwyg>
             </article>
         </div>
         <div class="card-footer flex justify-between">
@@ -50,7 +50,7 @@
 
         <div class="card-body">
             <article>
-                <p v-text="this.body"></p>
+                <p v-html="this.body"></p>
                 <hr>
                 
             </article>

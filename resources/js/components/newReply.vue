@@ -2,8 +2,8 @@
 	<div>
 		<div v-if="signedIn">
 			<div class="form-group">
-                <textarea class="form-control" name="body" id="body" rows="5" placeholder="Have something to say?" v-model="body"></textarea>
-            </div>
+				<wysiwyg name="body" v-model="body" placeholder="Have something to say?"></wysiwyg>
+			</div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" @click="add" name="submit" value="Submit">
             </div>
@@ -25,7 +25,6 @@
 		data() {
 			return {
 				body : '',
-				reply: '',
 				endpoint: window.location.pathname + '/replies',
 			}
 		},

@@ -22,7 +22,7 @@
                 <strong>{{$thread->replies_count}} {{str_plural('Reply', $thread->replies_count)}}</strong>
             </div>
             
-            <p>{{ $thread->body }}</p>
+            <p>{!! $thread->body !!}</p>
             <hr>
         </article>
     </div>

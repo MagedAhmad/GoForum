@@ -3,6 +3,9 @@
 @section('styles')
 
 <link rel="stylesheet" type="text/css" href="/css/vendor/jquery.atwho.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.1.1/trix.css">
+
+
 @endsection
 
 @section('content')
