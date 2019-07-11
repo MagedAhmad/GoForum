@@ -39,7 +39,7 @@
         <div class="card-header">
             <h5 class="level">
                 <b class="flex">
-                    <img src="{{$thread->user->avatar_path}}" width="25" height="25">
+                    <img src="{{ asset($thread->user->avatar_path) }}" width="25" height="25">
                     <a href="{{ route('profile',$thread->user->name)}}">{{$thread->user->name }} ({{ $thread->user->reputation .' XP' }})</a> 
                     <span v-text="this.title"></span>
 
