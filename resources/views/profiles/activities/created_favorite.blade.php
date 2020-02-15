@@ -1,11 +1,12 @@
 @component('profiles.activities.activity')
 
 	@slot('title')
+		<div class="border-l-4 border-teal-800 px-2 bg-teal-100 py-2 text-teal-800 w-full mb-4">
 
-		<a href="{{$activity->subject->favorited->path()}}">
-				Favorited a Reply 
-		</a>
-
+			<a href="{{$activity->subject->favorited->path()}}">
+					Favorited a Reply 
+			</a>
+		</div>
 	@endslot
 
 	@slot('body')

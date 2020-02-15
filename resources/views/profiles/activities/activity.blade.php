@@ -4,7 +4,7 @@
         <div class="level">
 
         	<h3 class="flex">
-				{{ $title }}</a>
+				{{ $title }}
 
 			</h3>
 

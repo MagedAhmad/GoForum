@@ -3,12 +3,9 @@
 
 @section('content')
 
-	<div class="container">
+	<div class="container mx-auto md:w-3/5">
 		<div class="pb-2 mt-4 mb-2 border-bottom">
             <avatar-form :user="{{ $profileUser }}"></avatar-form>
-            
-
-
 		</div>
 
         @forelse($activities as $date => $activity)
