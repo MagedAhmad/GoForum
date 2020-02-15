@@ -12,8 +12,6 @@ use App\Trending;
 
 class ThreadController extends Controller
 {
-
-
     public function __construct(){
         $this->middleware('auth')->except(['show','index']);
     }
@@ -24,13 +22,11 @@ class ThreadController extends Controller
      */
     public function index(Channel $channel,ThreadFilters $filters, Trending $trending)
     {
-
         $threads = $this->getThreads($filters, $channel);
 
         if(request()->wantsJson()){
             return $threads;
         }
-
 
         return view('threads.index',[
             'threads' => $threads,

@@ -23,62 +23,54 @@
 
 
     <script type="text/javascript">
-
         window.App = {!! json_encode([
             'csrfToken' => csrf_token(),
             'signedIn' => auth()->check(),
             'user' => auth()->user(),
         ]) !!};
-        
-
     </script>
 
-    <style type="text/css">
-        .level {
-            display:flex;
-            align-items: center;
-        }
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
-        .flex {
-            display:flex;
-        }
-
-        .flex-1 {
-            flex:1;
-        }
-
-        .mr-1{
-            margin-right:1em;
-        }
-
-        [v-cloak] {
-            display: none;
-        }
-
-        .justify-between {
-            justify-content: space-between;
-        }
-
-        .ml-a {
-            margin-left:auto;
-        }
-
-        .card-success {
-            background-color: #e6ffd9;
-        }
-    </style>
     @yield('styles')
 </head>
 <body>
     <div id="app">
         @include('layouts.nav')
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
 
         <flash message="{{ session('flash') }}"></flash>
     </div>
     @yield('scripts')
+
+    <script type="text/javascript">
+        // Navbar Toggle
+        document.addEventListener('DOMContentLoaded', function () {
+
+      // Get all "navbar-burger" elements
+      var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+      // Check if there are any navbar burgers
+      if ($navbarBurgers.length > 0) {
+
+        // Add a click event on each of them
+        $navbarBurgers.forEach(function ($el) {
+          $el.addEventListener('click', function () {
+
+            // Get the "main-nav" element
+            var $target = document.getElementById('main-nav');
+
+            // Toggle the class on "main-nav"
+            $target.classList.toggle('hidden');
+
+          });
+        });
+      }
+
+        });
+    </script>
 </body>
 </html>

@@ -1,87 +1,53 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+<div class=" bg-teal-800 py-4 px-2">
+    <div class="container mx-auto">
+        <nav class="flex items-center justify-between flex-wrap">
+            <div class="flex items-center flex-no-shrink text-white mr-12">
+                <a href="/" class=" hover:no-underline">
+                  <span class="font-semibold text-xl tracking-tight">TWiNKY</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+            </div>
+            <div class="block sm:hidden">
+                <button class="navbar-burger flex items-center px-3 py-2 border rounded text-white border-white hover:text-white hover:border-white">
+                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Browse
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="nav-link" href="/threads">All Threads</a>
-                                    @if(auth()->check())
-                                    <a class="nav-link" href="/threads?by={{auth()->user()->name}}">My Threads</a>
-                                    @endif
-
-                                    <a class="nav-link" href="/threads?popular=1">Popular Threads</a>
-                                    <a class="nav-link" href="/threads?unanswered=1">Unanswered Threads</a>
-
-                                    
-                                </div>
-                              </li>
-                        </li>
-                        <li class="nav-item">
-                            @if(auth()->check())
-                            <a class="nav-link" href="/threads/create">Create Thread</a>
-                            @endif
-                        </li>
-                        <li class="nav-item">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  All Channels
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    @foreach($channels as $channel)
-                                        <a class="dropdown-item" href="/threads/{{$channel->slug}}">{{ $channel->name }}</a>
-                                    @endforeach
-                                </div>
-                              </li>
-                        </li>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
+            </div>
+            <div id="main-nav" class="w-full flex-grow sm:flex items-center sm:w-auto hidden">
+                <div class="text-sm sm:flex-grow">
+                    <a href="/threads" class="no-underline text-white font-bold block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
+                        All Threads
+                    </a>
+                    <a href="/threads?popular=1" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
+                        Popular Threads
+                    </a>
+                    <a href="/threads?unanswered=1" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
+                        Unanswered Threads
+                    </a>
+                    
+                </div>
+                <div>
+                  @if(auth()->check())
                         <notifications></notifications>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                        <a href="/profiles/{{ auth()->user()->name }}" class="no-underline inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:text-teal hover:bg-transparent lg:mt-0">{{ auth()->user()->name }}</a>
+                        
+                            <a class="no-underline inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:text-teal hover:bg-transparent lg:mt-0" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-
-                                    <a class="dropdown-item" href="/profiles/{{auth()->user()->name}}">My Profile</a>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                  @else
+                    <a href="{{route('login')}}" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
+                        login
+                    </a>
+                    <a href="{{route('register')}}" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
+                        Register
+                    </a>
+                  @endif
                 </div>
             </div>
         </nav>
+    </div>
+</div>

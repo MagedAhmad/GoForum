@@ -1,4 +1,4 @@
-<div class="card-header">All Threads</div>
+<div class="card-header  bg-teal-800 text-white mb-2">All Threads</div>
 
 @forelse($threads as $thread)
 <div class="card">
@@ -13,7 +13,7 @@
                                 <a href="{{$thread->path()}}">{{ $thread->title }}</a>
                             </strong>
                         @else
-                            <a href="{{$thread->path()}}">{{ $thread->title }}</a>
+                            <a  class=" bg-teal-800 text-white" href="{{$thread->path()}}">{{ $thread->title }}</a>
 
                         @endif
                     </h3>
@@ -26,7 +26,7 @@
             <hr>
         </article>
     </div>
-    <div class="card-footer">
+    <div class="card-footer  bg-teal-800 text-white">
         {{ $thread->visits() }} Visits
     </div>
 </div>
