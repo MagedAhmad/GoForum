@@ -26,9 +26,7 @@
             <hr>
         </article>
     </div>
-    <div class="card-footer  bg-teal-800 text-white">
-        {{ $thread->visits() }} Visits
-    </div>
+
 </div>
 <br>
 @empty
