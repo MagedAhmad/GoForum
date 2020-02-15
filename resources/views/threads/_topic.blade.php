@@ -1,10 +1,9 @@
 <div class="card">
     <!-- Edit thread -->
     <div v-if="editing">
-        <div class="card-header">
+        <div class="bg-teal-800 text-white rounded p-4">
             <h5 class="level">
                 <input type="text" class="form-control" v-model="form.title">
-                
             </h5>
         </div>  
 
@@ -36,15 +35,13 @@
 
     <!-- View the thread -->
     <div v-if="! editing">
-        <div class="card-header">
+        <div class="bg-teal-800 text-white p-4 rounded">
             <h5 class="level">
                 <b class="flex">
-                    <img src="{{$thread->user->avatar_path}}" width="25" height="25">
-                    <a href="{{ route('profile',$thread->user->name)}}">{{$thread->user->name }} ({{ $thread->user->reputation .' XP' }})</a> 
-                    <span v-text="this.title"></span>
-
+                    <img src="{{$thread->user->avatar_path}}" class="mr-2" width="25" height="25">
+                    <a class="text-blue-500" href="{{ route('profile',$thread->user->name)}}">{{$thread->user->name }} ({{ $thread->user->reputation .' XP' }})</a> 
+                    <span class="ml-2" v-text="this.title"></span>
                 </b>
-
             </h5>
         </div>  
 

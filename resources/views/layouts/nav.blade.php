@@ -16,6 +16,11 @@
                     <a href="/threads" class="no-underline text-white font-bold block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
                         All Threads
                     </a>
+                    @if(auth()->check())
+                    <a href="/threads/create" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
+                        Create Thread
+                    </a>
+                    @endif
                     <a href="/threads?popular=1" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
                         Popular Threads
                     </a>

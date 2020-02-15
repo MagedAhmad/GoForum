@@ -5,7 +5,7 @@
 				<wysiwyg name="body" v-model="body" placeholder="Have something to say?"></wysiwyg>
 			</div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" @click="add" name="submit" value="Submit">
+                <input type="submit" class="px-4 py-2 text-white bg-teal-800 rounded" @click="add" name="submit" value="Add Reply">
             </div>
 		</div>
 	    <div v-else>

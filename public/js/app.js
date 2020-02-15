@@ -57793,8 +57793,8 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _c("input", {
-              staticClass: "btn btn-primary",
-              attrs: { type: "submit", name: "submit", value: "Submit" },
+              staticClass: "px-4 py-2 text-white bg-teal-800 rounded",
+              attrs: { type: "submit", name: "submit", value: "Add Reply" },
               on: { click: _vm.add }
             })
           ])
