@@ -13,18 +13,7 @@
                 </div>
 
         </div>
-        @if($trending)
         <div class="col-md-4">
-        	<div class="card">
-        		<div class="card-header bg-teal-800 text-white mb-2">Trending Threads</div>
-			    <div class="card-body">
-			        <ul class="list-group">
-			        	@foreach($trending as $thread)
-							<li class="list-group-item"><a href="{{$thread->path}}">{{$thread->title}}</a></li>
-					  	@endforeach
-					</ul>
-			    </div>
-			</div>
             <div class="card">
                 <div class="card-header bg-teal-800 text-white mb-2">Channels</div>
                 <div class="card-body">
@@ -36,7 +25,6 @@
                 </div>
             </div>
         </div>	
-        @endif
 
         
     </div>
