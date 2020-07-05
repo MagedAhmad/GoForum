@@ -16,6 +16,10 @@ Begin by cloning this repository to your machine, and installing all Composer & 
 
 ```bash
 git clone https://github.com/MagedAhmad/GoForum.git
-cd GoForum && composer install && npm install
+cd GoForum 
+cp .env.example .env
+php artisan key:generate
+composer install 
+npm install
 npm run dev
 ```

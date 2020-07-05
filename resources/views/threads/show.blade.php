@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-body">
                         <p>This thread was published {{$thread->created_at->diffForHumans()}} by 
-                            <a href="{{ route('profile',$thread->user->name)}}">{{$thread->user->name}}</a>, and currently has <span v-text="repliesCount"></span> {{ str_plural('Comment', $thread->replies_count )}}
+                            <a href="{{ route('profile',$thread->user->name)}}">{{$thread->user->name}}</a>, and currently has <span v-text="repliesCount"></span> {{ Illuminate\Support\Str::plural('Comment', $thread->replies_count )}}
                         </p>
 
                         <subscripe-button :active="{{ json_encode($thread->is_subscriped_to) }}" v-if="signedIn"></subscripe-button>

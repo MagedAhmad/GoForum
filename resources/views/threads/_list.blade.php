@@ -19,7 +19,7 @@
                     </h3>
                     <h5>by <a href="{{route('profile', $thread->user)}}">{{$thread->user->name }}</a></h5>
                 </div>
-                <strong>{{$thread->replies_count}} {{str_plural('Reply', $thread->replies_count)}}</strong>
+                <strong>{{$thread->replies_count}} {{Illuminate\Support\Str::plural('Reply', $thread->replies_count)}}</strong>
             </div>
             
             <p>{!! $thread->body !!}</p>

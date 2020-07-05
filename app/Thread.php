@@ -6,6 +6,7 @@ namespace App;
 use App\Notifications\ThreadWasUpdated;
 use App\Providers\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 use App\Reputation;
 
@@ -126,7 +127,7 @@ class Thread extends Model
     }
 
     public function setSlugAttribute($value) {
-        if(static::whereSlug($slug = str_slug($value))->exists()){
+        if(static::whereSlug($slug = Str::slug($value))->exists()){
             $slug = $this->incrementSlug($slug);
         }
 
