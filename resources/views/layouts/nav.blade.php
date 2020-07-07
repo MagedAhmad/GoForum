@@ -3,7 +3,7 @@
     <div class="container mx-auto">
         <nav class="flex items-center justify-between flex-wrap">
             <div class="flex items-center flex-no-shrink text-white mr-12">
-                <a href="/" class=" hover:no-underline">
+                <a href="{{ url('/') }}" class=" hover:no-underline">
                   <span class="font-semibold text-xl tracking-tight">TWiNKY</span>
                 </a>
             </div>
@@ -14,18 +14,18 @@
             </div>
             <div id="main-nav" class="w-full flex-grow sm:flex items-center sm:w-auto hidden  mt-2 md:mt-0">
                 <div class="text-sm sm:flex-grow">
-                    <a href="/threads" class="no-underline text-white font-bold block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
+                    <a href="{{ url('/threads')}}" class="no-underline text-white font-bold block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
                         All Threads
                     </a>
                     @if(auth()->check())
-                    <a href="/threads/create" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
+                    <a href="{{ url('/threads/create')}}" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
                         Create Thread
                     </a>
                     @endif
-                    <a href="/threads?popular=1" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
+                    <a href="{{ url('/threads?popular=1')}}" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
                         Popular Threads
                     </a>
-                    <a href="/threads?unanswered=1" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
+                    <a href="{{ url('/threads?unanswered=1') }}" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
                         Unanswered Threads
                     </a>
                     
@@ -33,7 +33,7 @@
                 <div class="flex flex-col md:flex-row">
                   @if(auth()->check())
                         <notifications></notifications>
-                        <a href="/profiles/{{ auth()->user()->name }}" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">{{ auth()->user()->name }}</a>
+                        <a href="{{ url('/profiles/' . auth()->user()->name) }}" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">{{ auth()->user()->name }}</a>
                         
                             <a class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

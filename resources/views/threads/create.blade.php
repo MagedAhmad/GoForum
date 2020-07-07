@@ -15,7 +15,7 @@
 
                 <div class="card-body">
                     <article>
-                        <form method="POST" action="/threads">
+                        <form method="POST" action="{{ url('/threads') }}">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <select name="channel_id" class="form-control">

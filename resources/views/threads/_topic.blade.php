@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="mt-4 md:mt-0">
-                <a class="flex items-center" href="#">
+                <a class="flex items-center" href="{{ url('/profiles/' . $thread->user->name) }}">
                     <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" src="{{$thread->user->avatar_path}}" alt="avatar">
                     <h1 class="text-gray-700 font-bold">{{ $thread->user->name }} ({{ $thread->user->reputation .' XP' }})</h1>
                 </a>
