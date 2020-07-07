@@ -11,13 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/test', function() {
-	return view('profiles.test');
-});
 
 Auth::routes();
 Auth::routes(['verify' => true]); 
@@ -25,6 +18,7 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/threads','ThreadController@index');
+Route::get('/','ThreadController@index');
 Route::get('/threads/create','ThreadController@create');
 Route::get('/threads/{channel}/{thread}','ThreadController@show');
 Route::delete('/threads/{channel}/{thread}','ThreadController@destroy');

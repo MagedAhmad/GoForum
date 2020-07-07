@@ -3032,7 +3032,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     classes: function classes() {
-      return ['level', 'btn', this.active ? 'btn-primary' : 'btn-default'];
+      return [this.active ? 'text-green-500' : 'text-gray-500'];
     }
   },
   methods: {
@@ -3381,6 +3381,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _favorite_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./favorite.vue */ "./resources/js/components/favorite.vue");
+//
+//
 //
 //
 //
@@ -61570,14 +61572,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("button", { class: _vm.classes, on: { click: _vm.toggle } }, [
-    _c("span", { staticClass: "oi oi-thumb-up" }),
-    _vm._v(" "),
-    _c("p", {
-      staticStyle: { "padding-top": "20px" },
-      domProps: { textContent: _vm._s(_vm.count) }
-    })
-  ])
+  return _c(
+    "a",
+    { staticClass: "flex mr-2", class: _vm.classes, on: { click: _vm.toggle } },
+    [
+      _c("span", { staticClass: "oi oi-thumb-up", class: _vm.classes }),
+      _vm._v(" "),
+      _c("p", { domProps: { textContent: _vm._s(_vm.count) } })
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -61656,7 +61659,8 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _c("input", {
-              staticClass: "px-4 py-2 text-white bg-teal-800 rounded",
+              staticClass:
+                "mt-6 mb-12 md:mb-0 md:mt-10 inline-block py-2 px-8 text-white bg-red-500 hover:bg-red-600 rounded-lg shadow",
               attrs: { type: "submit", name: "submit", value: "Add Reply" },
               on: { click: _vm.add }
             })
@@ -61911,36 +61915,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "py-2" }, [
     _c(
       "div",
       {
-        staticClass: "card",
-        class: _vm.isBest ? "card-success" : "",
+        staticClass: "p-3 shadow",
+        class: _vm.isBest ? "bg-green-500" : "bg-white",
         attrs: { id: "reply-" + this.reply.id }
       },
       [
-        _c("div", { staticClass: "card-header" }, [
-          _c("h5", { staticClass: "level" }, [
-            _c("b", { staticClass: "flex" }, [
-              _c("a", {
-                attrs: { href: "/profile/" + this.reply.user.name },
-                domProps: { textContent: _vm._s(this.reply.user.name) }
-              }),
-              _vm._v(" \n                    said "),
-              _c("span", {
-                domProps: {
-                  textContent: _vm._s(
-                    _vm.moment(this.reply.created_at).fromNow()
-                  )
-                }
-              }),
-              _vm._v(" ...\n\n                ")
-            ]),
-            _vm._v(" "),
-            _vm.signedIn
-              ? _c("div", [_c("favorite", { attrs: { reply: _vm.reply } })], 1)
-              : _vm._e()
+        _c("div", [
+          _c("h5", {}, [
+            _c("b", { staticClass: "flex justify-between" }, [
+              _c(
+                "div",
+                { staticClass: "flex flex-col items-center justify-between" },
+                [
+                  _c("a", {
+                    staticClass: "text-lg font-semibold text-gray-900 -mt-1",
+                    attrs: { href: "/profile/" + this.reply.user.name },
+                    domProps: { textContent: _vm._s(this.reply.user.name) }
+                  }),
+                  _vm._v(" "),
+                  _c("small", {
+                    staticClass: "text-sm text-gray-700",
+                    domProps: {
+                      textContent: _vm._s(
+                        _vm.moment(this.reply.created_at).fromNow()
+                      )
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex items-center" }, [
+                _vm.signedIn
+                  ? _c(
+                      "div",
+                      [_c("favorite", { attrs: { reply: _vm.reply } })],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.authorize("updateThread", _vm.reply.thread)
+                  ? _c("button", { on: { click: _vm.MarkBestReply } }, [
+                      _vm._v("Best Reply ?")
+                    ])
+                  : _vm._e()
+              ])
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -61991,7 +62014,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "card-footer level" }, [
+        _c("div", { staticClass: "level" }, [
           _vm.authorize("updateReply", _vm.reply)
             ? _c("div", [
                 _c(
@@ -62016,17 +62039,6 @@ var render = function() {
                   [_vm._v("Delete")]
                 )
               ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.authorize("updateThread", _vm.reply.thread)
-            ? _c(
-                "button",
-                {
-                  staticClass: "btn btn-sm btn-primary ml-a",
-                  on: { click: _vm.MarkBestReply }
-                },
-                [_vm._v("Best Reply ?")]
-              )
             : _vm._e()
         ])
       ]

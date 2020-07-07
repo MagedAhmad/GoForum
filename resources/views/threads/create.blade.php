@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 mt-12">
             <div class="card">
-                <div class="card-header  bg-teal-800 text-white font-bold">Create Thread</div>
+                <div class="card-header bg-gray-600 text-white font-bold">Create Thread</div>
 
                 <div class="card-body">
                     <article>
@@ -35,7 +35,7 @@
                                 <wysiwyg name="body"></wysiwyg>
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="px-4 py-2 bg-teal-800 text-white" name="submit" value="Publish">
+                                <input type="submit" class="px-4 py-2 bg-gray-600 text-white" name="submit" value="Publish">
                             </div>
                             
                         </form>

@@ -1,17 +1,21 @@
 <template>
-	<div>
-	    <div class="card" :id="'reply-'+ this.reply.id" :class="isBest ? 'card-success' : ''">
-	        <div class="card-header"> 
-	            <h5 class="level">
-	                <b class="flex">
-	                    <a :href="'/profile/'+ this.reply.user.name" v-text="this.reply.user.name"></a> 
-	                    said <span v-text="moment(this.reply.created_at).fromNow()"></span> ...
-
+	<div class="py-2">
+	    <div class="p-3 shadow" :id="'reply-'+ this.reply.id" :class="isBest ? 'bg-green-500' : 'bg-white'">
+	        <div> 
+	            <h5 class="">
+	                <b class="flex justify-between">
+						
+						<div class="flex flex-col items-center justify-between">
+							<a class="text-lg font-semibold text-gray-900 -mt-1" :href="'/profile/'+ this.reply.user.name" v-text="this.reply.user.name"></a>
+							<small class="text-sm text-gray-700" v-text="moment(this.reply.created_at).fromNow()"></small>
+						</div>
+						<div class="flex items-center">
+							<div v-if="signedIn">
+								<favorite :reply="reply"></favorite>                	
+							</div>
+							<button class="" @click="MarkBestReply" v-if="authorize('updateThread', reply.thread)">Best Reply ?</button>
+						</div>
 	                </b>
-	                <div v-if="signedIn">
-		                <favorite :reply="reply"></favorite>                	
-	                </div>
-
 	            </h5>
 	            
 	        </div>
@@ -30,13 +34,11 @@
 	                
 	            </article>
 	        </div>
-	        <div class="card-footer level">
+	        <div class="level">
 				<div v-if="authorize('updateReply', reply)">
 					<button class="btn btn-sm btn-info mr-1" @click="editing = true">Edit</button>
 	            	<button class="btn btn-sm btn-danger" @click="destroy">Delete</button>
-				</div>
-	            <button class="btn btn-sm btn-primary ml-a" @click="MarkBestReply" v-if="authorize('updateThread', reply.thread)">Best Reply ?</button>
-	            
+				</div>	            
 	        </div>
 	    </div>
 	</div>

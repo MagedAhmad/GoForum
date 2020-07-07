@@ -1,8 +1,8 @@
 <template>
-	<button :class="classes" @click="toggle">
-		<span class="oi oi-thumb-up"></span>
-        <p style="padding-top:20px;" v-text="count"></p>
-    </button>	
+	<a class="flex mr-2" :class="classes" @click="toggle">
+		<span class="oi oi-thumb-up" :class="classes"></span>
+        <p v-text="count"></p>
+    </a>	
 	
 </template>
 
@@ -20,7 +20,7 @@
 
 		computed: {
 			classes() {
-				return ['level' ,'btn' , (this.active) ? 'btn-primary' : 'btn-default']; 
+				return [(this.active) ? 'text-green-500' : 'text-gray-500']; 
 			}
 		},
 

@@ -28,8 +28,8 @@ class Reply extends Model
 
         static::deleted(function($reply){
             $reply->thread->decrement('replies_count');
+            
             (new Reputation)->reduce($reply->user, 'created_reply');
-
         });
         
     }
