@@ -7,7 +7,7 @@ class Reputation {
 
     protected $points = [
         'created_thread' => 5,
-        'created_reply' => 2,
+        'created_reply' => 1,
         'best_reply' => 50,
     ];
 

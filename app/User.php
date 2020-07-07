@@ -55,7 +55,10 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return in_array($this->name, ['Maged']);
+        return in_array(
+            strtolower($this->email),
+            array_map('strtolower', config('something.administrators'))
+        );
     }
 
 

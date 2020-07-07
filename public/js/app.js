@@ -3427,6 +3427,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
@@ -61920,7 +61923,9 @@ var render = function() {
       "div",
       {
         staticClass: "p-3 shadow",
-        class: _vm.isBest ? "bg-green-500" : "bg-white",
+        class: _vm.isBest
+          ? "border-solid border-2 border-green-500 bg-white"
+          : "bg-white",
         attrs: { id: "reply-" + this.reply.id }
       },
       [
@@ -61957,10 +61962,22 @@ var render = function() {
                     )
                   : _vm._e(),
                 _vm._v(" "),
-                _vm.authorize("updateThread", _vm.reply.thread)
-                  ? _c("button", { on: { click: _vm.MarkBestReply } }, [
-                      _vm._v("Best Reply ?")
-                    ])
+                _vm.isBest
+                  ? _c(
+                      "span",
+                      {
+                        staticClass:
+                          "tracking-wider text-white bg-green-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold",
+                        attrs: { title: "" }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" }
+                        }),
+                        _vm._v(" Best Reply\n\t\t\t\t\t\t")
+                      ]
+                    )
                   : _vm._e()
               ])
             ])
@@ -62037,7 +62054,13 @@ var render = function() {
                     on: { click: _vm.destroy }
                   },
                   [_vm._v("Delete")]
-                )
+                ),
+                _vm._v(" "),
+                _vm.authorize("updateThread", _vm.reply.thread)
+                  ? _c("button", { on: { click: _vm.MarkBestReply } }, [
+                      _vm._v("Best Reply ?")
+                    ])
+                  : _vm._e()
               ])
             : _vm._e()
         ])

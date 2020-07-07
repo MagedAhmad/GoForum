@@ -1,6 +1,6 @@
 <template>
 	<div class="py-2">
-	    <div class="p-3 shadow" :id="'reply-'+ this.reply.id" :class="isBest ? 'bg-green-500' : 'bg-white'">
+	    <div class="p-3 shadow" :id="'reply-'+ this.reply.id" :class="isBest ? 'border-solid border-2 border-green-500 bg-white' : 'bg-white'">
 	        <div> 
 	            <h5 class="">
 	                <b class="flex justify-between">
@@ -13,7 +13,9 @@
 							<div v-if="signedIn">
 								<favorite :reply="reply"></favorite>                	
 							</div>
-							<button class="" @click="MarkBestReply" v-if="authorize('updateThread', reply.thread)">Best Reply ?</button>
+							<span v-if="isBest" class="tracking-wider text-white bg-green-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold" title="">
+								<i class="fa fa-star" aria-hidden="true"></i> Best Reply
+							</span>
 						</div>
 	                </b>
 	            </h5>
@@ -38,6 +40,7 @@
 				<div v-if="authorize('updateReply', reply)">
 					<button class="btn btn-sm btn-info mr-1" @click="editing = true">Edit</button>
 	            	<button class="btn btn-sm btn-danger" @click="destroy">Delete</button>
+					<button class="" @click="MarkBestReply" v-if="authorize('updateThread', reply.thread)">Best Reply ?</button>
 				</div>	            
 	        </div>
 	    </div>
