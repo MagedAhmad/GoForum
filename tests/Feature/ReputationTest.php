@@ -34,11 +34,10 @@ class ReputationTest extends TestCase
 
     public function test_user_reputation_increases_when_leaving_a_reply()
     {
-
         $reply = create('App\Reply');
 
 
-        $this->assertEquals(2, $reply->user->reputation);
+        $this->assertEquals(1, $reply->user->reputation);
     }
 
     public function test_user_reputation_decreases_when_reply_is_deleted()
@@ -47,7 +46,7 @@ class ReputationTest extends TestCase
 
         $reply = create('App\Reply', ['user_id' => auth()->id()]);
 
-        $this->assertEquals(2, $reply->user->reputation);
+        $this->assertEquals(1, $reply->user->reputation);
 
         $this->delete('/replies/'. $reply->id);
 
@@ -67,6 +66,6 @@ class ReputationTest extends TestCase
         $reply->thread->markBestReply($reply);
 
 
-        $this->assertEquals(52, $reply->user->reputation);
+        $this->assertEquals(51, $reply->user->reputation);
     }
 }

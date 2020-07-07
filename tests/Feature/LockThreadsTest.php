@@ -29,20 +29,19 @@ class LockThreadsTest extends TestCase
     {
         $this->withExceptionHandling();
         
-        $this->signIn(create('App\User', ['name' => 'Maged']));
+        $this->signIn(create('App\User', ['email' => 'maged.ahmedr@gmail.com']));
 
         $thread = create('App\Thread');
 
         $this->post(route('lock-threads.store', $thread));
 
         $this->assertTrue($thread->fresh()->lock);
-
     }
 
     public function test_administrators_can_unlock_a_thread()
     {
         
-        $this->signIn(create('App\User', ['name' => 'Maged']));
+        $this->signIn(create('App\User', ['email' => 'maged.ahmedr@gmail.com']));
 
         $thread = create('App\Thread', ['lock' => true]);
 
