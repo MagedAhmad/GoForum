@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="px-2 md:px-16">
-    <div class="row w-full flex justify-center">
+    <div class="row w-full flex flex-col justify-center">
         <div class="mt-4 px-2 divide-x divide-gray-400">
             <nav class="px-8 pt-2">
                 <div class="flex justify-center flex-wrap">
@@ -21,9 +21,6 @@
                 {{ $threads->render() }}
             </div>
         </div>
-        
-
-        
     </div>
 </div>
 @endsection
