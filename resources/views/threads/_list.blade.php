@@ -1,5 +1,5 @@
 @forelse($threads as $thread)
-<!-- component -->
+
 <div>
     <div class="max-w-4xl px-10 my-4 py-6 bg-white rounded-lg shadow-md">
         <div class="flex justify-between items-center">
@@ -16,7 +16,7 @@
             <a class="text-blue-600 hover:underline" href="{{$thread->path()}}">Read more ..</a>
             <div>
                 <a class="flex items-center" href="#">
-                    <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" src="https://images.unsplash.com/photo-1502980426475-b83966705988?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=373&q=80" alt="avatar">
+                    <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" src="{{$thread->user->avatar_path}}" alt="avatar">
                     <h1 class="text-gray-700 font-bold">{{ $thread->user->name }} ({{ $thread->user->reputation .' XP' }})</h1>
                 </a>
             </div>
@@ -46,5 +46,8 @@
 
 @empty
 
-<h4 style="margin:20px" class="text-center">No threads are available yet !</h4>
+<div>
+    <h4 class=" my-16 text-center text-lg">No threads are available yet! <br> 
+    Check back later or even start by <a class="text-blue-500" href="{{url('/threads/create')}}">writing your own Thread</a> on this topic!</h4>
+</div>
 @endforelse

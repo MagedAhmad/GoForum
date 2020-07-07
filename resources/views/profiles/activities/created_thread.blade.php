@@ -2,7 +2,7 @@
 
 	@slot('title')
 
-		<div class="border-l-4 border-teal-800 px-2 bg-teal-100 py-2 text-teal-800 w-full mb-4">
+		<div class="border-l-4 border-gray-800 px-2 bg-gray-100 py-2 text-gray-800 w-full mb-4">
 			Posted
 			<a href="{{$activity->subject->path()}}">{{ $activity->subject->title }}</a>
         </div>

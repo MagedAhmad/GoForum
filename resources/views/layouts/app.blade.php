@@ -38,7 +38,7 @@
     <div id="app">
         @include('layouts.nav')
 
-        <main>
+        <main class="mb-4">
             @yield('content')
         </main>
 

@@ -79,6 +79,4 @@ class User extends Authenticatable
         return asset('storage/' . $avatar ?: 'storage/avatars/default.png');
     }
 
-    
-    
 }
