@@ -4,7 +4,7 @@
         <nav class="flex items-center justify-between flex-wrap">
             <div class="flex items-center flex-no-shrink text-white mr-12">
                 <a href="{{ url('/') }}" class=" hover:no-underline">
-                  <span class="font-semibold text-xl tracking-tight">TWiNKY</span>
+                  <span class="font-black text-xl tracking-tight">Stickit</span>
                 </a>
             </div>
             <div class="block sm:hidden">
