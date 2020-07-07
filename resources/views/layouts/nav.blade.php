@@ -1,4 +1,5 @@
-<div class=" bg-teal-800 py-4 px-2">
+    <div class="px-10 py-6 bg-gray-600 shadow-md">
+<!-- <div class=" bg-teal-800 py-4 px-2"> -->
     <div class="container mx-auto">
         <nav class="flex items-center justify-between flex-wrap">
             <div class="flex items-center flex-no-shrink text-white mr-12">
@@ -11,7 +12,7 @@
                     <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
                 </button>
             </div>
-            <div id="main-nav" class="w-full flex-grow sm:flex items-center sm:w-auto hidden">
+            <div id="main-nav" class="w-full flex-grow sm:flex items-center sm:w-auto hidden  mt-2 md:mt-0">
                 <div class="text-sm sm:flex-grow">
                     <a href="/threads" class="no-underline text-white font-bold block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
                         All Threads
@@ -29,12 +30,12 @@
                     </a>
                     
                 </div>
-                <div>
+                <div class="flex flex-col md:flex-row">
                   @if(auth()->check())
                         <notifications></notifications>
-                        <a href="/profiles/{{ auth()->user()->name }}" class="no-underline inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:text-teal hover:bg-transparent lg:mt-0">{{ auth()->user()->name }}</a>
+                        <a href="/profiles/{{ auth()->user()->name }}" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">{{ auth()->user()->name }}</a>
                         
-                            <a class="no-underline inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:text-teal hover:bg-transparent lg:mt-0" href="{{ route('logout') }}"
+                            <a class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
