@@ -16,8 +16,6 @@
       
     </ul>
   </div>
-
-
 </template>
 
 

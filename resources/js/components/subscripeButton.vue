@@ -12,7 +12,7 @@
 		props: ['active'],
 		computed: {
 			classes() {
-				return (this.active) ? 'btn btn-primary' : 'btn btn-default'; 
+				return (this.active) ? 'btn btn-success' : 'btn btn-default'; 
 			}
 		},
 		methods: {
@@ -20,9 +20,6 @@
 				let requestType = this.active ? 'delete' : 'post';
 				axios[requestType](location.pathname + '/subscriptions');
 				this.active = ! this.active;
-
-
-				
 			}
 		}
 	}
