@@ -1,7 +1,5 @@
 <template>
-
-
-  <div class="group text-white flex" v-if="notifications.length">
+  <div class="group text-white flex" v-if="notifications.length" style="position:relative;z-index: 5;">
     <button class="outline-none focus:outline-none py-1 rounded-sm flex items-center mr-4">
 
       <span class="hidden md:inline-block pr-1 font-semibold flex-1 -mt-1"><i class="fa fa-bell"></i></span>
@@ -34,7 +32,9 @@
 
     methods: {
       markAsRead(notification) {
-        axios.delete('/profiles/' + window.App.user.name + '/notifications/' + notification.id);
+        axios.post('/profiles/' + window.App.user.name + '/notifications/' + notification.id, {
+          _method: 'delete'
+        });
 
       }
     },
