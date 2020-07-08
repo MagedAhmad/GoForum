@@ -11,7 +11,7 @@
 
 	@slot('body')
 
-	    <p>{{ $activity->subject->favorited->body }}</p>
+	    <p>{!! $activity->subject->favorited->body !!}</p>
 
 	@endslot
 
