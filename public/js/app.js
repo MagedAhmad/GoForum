@@ -3610,7 +3610,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var uri = "/threads/".concat(this.thread.channel.id, "/").concat(this.thread.slug);
-      axios.patch(uri, this.form).then(function () {
+      axios.post(uri, {
+        title: this.thread.title,
+        body: this.thread.body,
+        _method: 'patch'
+      }).then(function () {
         _this.editing = false;
         _this.title = _this.form.title;
         _this.body = _this.form.body;
@@ -75269,8 +75273,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/webmast/public_html/GoForum/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/webmast/public_html/GoForum/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/maged/Hard/projects/GoForum/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/maged/Hard/projects/GoForum/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

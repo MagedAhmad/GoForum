@@ -34,17 +34,22 @@
 			update() {
 				let uri = `/threads/${this.thread.channel.id}/${this.thread.slug}`;
 
-				axios.patch(uri, this.form).then(() => {
+				axios.post(uri, {
+					title: this.thread.title,
+					body: this.thread.body, 
+					_method: 'patch'
+					}).then(() => {
 					this.editing = false;
 					this.title = this.form.title;
 					this.body = this.form.body;
+
 					flash('Your thread has been updated.');
 				});
 			},
 			reset() {
 				this.form = {
 					title: this.thread.title,
-					body: this.thread.body
+					body: this.thread.body,
 				};
 
 				this.editing = false;
