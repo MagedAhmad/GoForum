@@ -6,7 +6,7 @@
 	                <b class="flex justify-between">
 						
 						<div class="flex flex-col items-center justify-between">
-							<a class="text-lg font-semibold text-gray-900 -mt-1" :href="'/profile/'+ this.reply.user.name" v-text="this.reply.user.name"></a>
+							<a class="text-lg font-semibold text-gray-900 -mt-1" :href="'/profiles/'+ this.reply.user.name" v-text="this.reply.user.name"></a>
 							<small class="text-sm text-gray-700" v-text="moment(this.reply.created_at).fromNow()"></small>
 						</div>
 						<div class="flex items-center">

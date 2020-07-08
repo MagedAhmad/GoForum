@@ -61960,7 +61960,7 @@ var render = function() {
                 [
                   _c("a", {
                     staticClass: "text-lg font-semibold text-gray-900 -mt-1",
-                    attrs: { href: "/profile/" + this.reply.user.name },
+                    attrs: { href: "/profiles/" + this.reply.user.name },
                     domProps: { textContent: _vm._s(this.reply.user.name) }
                   }),
                   _vm._v(" "),
