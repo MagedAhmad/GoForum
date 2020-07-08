@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="description" content="Stickit is a modern forum software for developers. Making it easy to engage in focused programming related discussion">
+    <meta name="keywords" content="Discussion, Question, Programming, Developers, Code">
+    <meta name="author" content="Maged Raslan">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
