@@ -111,8 +111,6 @@ class ThreadController extends Controller
         return redirect('/login');
     }
 
-
-
     public function getThreads($filters, $channel){
         $threads = Thread::filter($filters)->latest();
 

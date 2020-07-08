@@ -81,14 +81,22 @@
 			update() {
 				axios.patch('/replies/' + this.reply.id, {
 					body : this.body
-				});
+				}).then((response) => {
+					flash('Successfully Updated!', 'success');
+				}).catch((err) => {
+					console.log(err)
+				})
 
 				this.editing  = false;
-				flash('Successfully Updated!', 'success');
 			},
 
 			destroy(){
-				axios.delete('/replies/' + this.reply.id);
+				axios.delete('/replies/' + this.reply.id)
+					.then((response) => {
+						flash('Successfully Deleted!', 'success');
+					}).catch((err) => {
+						console.log(err)
+					})
 				
 				this.$emit('deleted', this.reply.id);
 
