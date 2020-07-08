@@ -40,8 +40,9 @@
 				<div v-if="authorize('updateReply', reply)">
 					<button class="btn btn-sm btn-info mr-1" @click="editing = true">Edit</button>
 	            	<button class="btn btn-sm btn-danger" @click="destroy">Delete</button>
-					<button class="" @click="MarkBestReply" v-if="authorize('updateThread', reply.thread)">Best Reply ?</button>
-				</div>	            
+				</div>	 
+				<button class="" @click="MarkBestReply" v-if="authorize('updateThread', reply.thread) && !isBest">Best Reply ?</button>
+
 	        </div>
 	    </div>
 	</div>
@@ -105,7 +106,6 @@
 
 			},
 			MarkBestReply() {
-
 				this.isBest = true;
 
 				axios.post('/replies/'+ this.reply.id +'/best');
