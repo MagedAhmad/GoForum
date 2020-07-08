@@ -79,8 +79,9 @@
 		},
 		methods : {
 			update() {
-				axios.patch('/replies/' + this.reply.id, {
-					body : this.body
+				axios.post('/replies/' + this.reply.id, {
+					body : this.body,
+                    _method: 'patch'
 				}).then((response) => {
 					flash('Successfully Updated!', 'success');
 				}).catch((err) => {
@@ -91,7 +92,9 @@
 			},
 
 			destroy(){
-				axios.delete('/replies/' + this.reply.id)
+				axios.post('/replies/' + this.reply.id, {
+                      _method: 'delete'
+                    })
 					.then((response) => {
 						flash('Successfully Deleted!', 'success');
 					}).catch((err) => {

@@ -3461,14 +3461,24 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
   },
   methods: {
     update: function update() {
-      axios.patch('/replies/' + this.reply.id, {
-        body: this.body
+      axios.post('/replies/' + this.reply.id, {
+        body: this.body,
+        _method: 'patch'
+      }).then(function (response) {
+        flash('Successfully Updated!', 'success');
+      })["catch"](function (err) {
+        console.log(err);
       });
       this.editing = false;
-      flash('Successfully Updated!', 'success');
     },
     destroy: function destroy() {
-      axios["delete"]('/replies/' + this.reply.id);
+      axios.post('/replies/' + this.reply.id, {
+        _method: 'delete'
+      }).then(function (response) {
+        flash('Successfully Deleted!', 'success');
+      })["catch"](function (err) {
+        console.log(err);
+      });
       this.$emit('deleted', this.reply.id);
     },
     MarkBestReply: function MarkBestReply() {
@@ -75259,8 +75269,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/maged/Hard/projects/GoForum/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/maged/Hard/projects/GoForum/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/webmast/public_html/GoForum/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/webmast/public_html/GoForum/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
