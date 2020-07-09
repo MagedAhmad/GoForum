@@ -30,8 +30,11 @@ class Reply extends Model
             $reply->thread->decrement('replies_count');
             
             (new Reputation)->reduce($reply->user, 'created_reply');
+            
+            if($reply->isBest) {
+                (new Reputation)->reduce($reply->user, 'best_reply');
+            }
         });
-        
     }
 
 

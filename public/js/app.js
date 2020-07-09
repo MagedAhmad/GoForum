@@ -3223,6 +3223,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -8093,7 +8097,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* since nested groupes are not supported we have to use \n   regular css for the nested dropdowns \n*/\nli>ul                 { transform: translatex(100%) scale(0)\n}\nli:hover>ul           { transform: translatex(101%) scale(1)\n}\nli > button svg       { transform: rotate(-90deg)\n}\nli:hover > button svg { transform: rotate(-270deg)\n}\n\n/* Below styles fake what can be achieved with the tailwind config\n   you need to add the group-hover variant to scale and define your custom\n   min width style.\n\t See https://codesandbox.io/s/tailwindcss-multilevel-dropdown-y91j7?file=/index.html\n\t for implementation with config file\n*/\n.group:hover .group-hover\\:scale-100 { transform: scale(1)\n}\n.group:hover .group-hover\\:-rotate-180 { transform: rotate(180deg)\n}\n.scale-0 { transform: scale(0)\n}\n.min-w-32 { min-width: 8rem\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* since nested groupes are not supported we have to use \n   regular css for the nested dropdowns \n*/\nli>ul                 { transform: translatex(100%) scale(0)\n}\nli:hover>ul           { transform: translatex(101%) scale(1)\n}\nli > button svg       { transform: rotate(-90deg)\n}\nli:hover > button svg { transform: rotate(-270deg)\n}\n\n/* Below styles fake what can be achieved with the tailwind config\n   you need to add the group-hover variant to scale and define your custom\n   min width style.\n\t See https://codesandbox.io/s/tailwindcss-multilevel-dropdown-y91j7?file=/index.html\n\t for implementation with config file\n*/\n.group:hover .group-hover\\:scale-100 { transform: scale(1)\n}\n.group:hover .group-hover\\:-rotate-180 { transform: rotate(180deg)\n}\n.scale-0 { transform: scale(0)\n}\n.min-w-32 { min-width: 8rem\n}\n", ""]);
 
 // exports
 
@@ -61718,47 +61722,60 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.notifications.length
-    ? _c(
-        "div",
+  return _c(
+    "div",
+    {
+      staticClass: "group text-white flex",
+      staticStyle: { position: "relative", "z-index": "5" }
+    },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "ul",
         {
-          staticClass: "group text-white flex",
-          staticStyle: { position: "relative", "z-index": "5" }
+          staticClass:
+            "bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute \n  transition duration-150 ease-in-out origin-top min-w-32 mt-8 md:-ml-16"
         },
         [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "ul",
-            {
-              staticClass:
-                "bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute \n  transition duration-150 ease-in-out origin-top min-w-32 mt-8 md:-ml-16"
-            },
-            _vm._l(_vm.notifications, function(notification) {
-              return _c(
+          _vm.notifications.length == 0
+            ? _c(
                 "li",
-                { staticClass: "rounded-sm px-3 py-1 hover:bg-gray-100" },
+                {
+                  staticClass:
+                    "rounded-sm px-3 py-1 hover:bg-gray-100 text-black"
+                },
                 [
-                  _c("a", {
-                    staticClass: "dropdown-item",
-                    attrs: { href: notification.data.link },
-                    domProps: {
-                      textContent: _vm._s(notification.data.message)
-                    },
-                    on: {
-                      click: function($event) {
-                        return _vm.markAsRead(notification)
-                      }
-                    }
-                  })
+                  _c("a", { staticClass: "dropdown-item" }, [
+                    _vm._v("No notification")
+                  ])
                 ]
               )
-            }),
-            0
-          )
-        ]
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._l(_vm.notifications, function(notification) {
+            return _c(
+              "li",
+              { staticClass: "rounded-sm px-3 py-1 hover:bg-gray-100" },
+              [
+                _c("a", {
+                  staticClass: "dropdown-item",
+                  attrs: { href: notification.data.link },
+                  domProps: { textContent: _vm._s(notification.data.message) },
+                  on: {
+                    click: function($event) {
+                      return _vm.markAsRead(notification)
+                    }
+                  }
+                })
+              ]
+            )
+          })
+        ],
+        2
       )
-    : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -62054,7 +62071,8 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "level" }, [
-          _vm.authorize("updateReply", _vm.reply)
+          _vm.authorize("updateReply", _vm.reply) ||
+          _vm.authorize("updateThread", _vm.reply.thread)
             ? _c("div", [
                 _c(
                   "button",

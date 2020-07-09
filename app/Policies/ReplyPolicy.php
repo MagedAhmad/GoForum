@@ -11,7 +11,7 @@ class ReplyPolicy
     use HandlesAuthorization;
 
     public function update(User $user, Reply $reply){
-        return $user->id == $reply->user_id;
+        return $user->id == $reply->user_id || $user->isAdmin;
     }
 
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="group text-white flex" v-if="notifications.length" style="position:relative;z-index: 5;">
+  <div class="group text-white flex" style="position:relative;z-index: 5;">
     <button class="outline-none focus:outline-none py-1 rounded-sm flex items-center mr-4">
 
       <span class="hidden md:inline-block pr-1 font-semibold flex-1 -mt-1"><i class="fa fa-bell"></i></span>
@@ -7,12 +7,16 @@
     </button>
     <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
     transition duration-150 ease-in-out origin-top min-w-32 mt-8 md:-ml-16">
-      <li class="rounded-sm px-3 py-1 hover:bg-gray-100" v-for="notification in notifications">
+        <li class="rounded-sm px-3 py-1 hover:bg-gray-100 text-black" v-if="notifications.length == 0">
+          <a class="dropdown-item">No notification</a>
+        </li>
+        <li class="rounded-sm px-3 py-1 hover:bg-gray-100" v-for="notification in notifications">
           <a class="dropdown-item" 
             :href="notification.data.link" 
             @click="markAsRead(notification)"
             v-text="notification.data.message">
-          </a></li>
+          </a>
+        </li>
       
     </ul>
   </div>

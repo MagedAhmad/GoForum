@@ -151,7 +151,9 @@ class Thread extends Model
 
     public function markBestReply(Reply $reply)
     {
-        (new Reputation)->award($reply->user, 'best_reply');
+        if($reply->user->id != $this->user->id) {
+            (new Reputation)->award($reply->user, 'best_reply');
+        }
 
         $this->update(['best_reply_id' => $reply->id]);
     }
