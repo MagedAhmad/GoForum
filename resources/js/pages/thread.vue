@@ -35,8 +35,8 @@
 				let uri = `/threads/${this.thread.channel.id}/${this.thread.slug}`;
 
 				axios.post(uri, {
-					title: this.thread.title,
-					body: this.thread.body, 
+					title: this.form.title,
+					body: this.form.body, 
 					_method: 'patch'
 					}).then(() => {
 					this.editing = false;
