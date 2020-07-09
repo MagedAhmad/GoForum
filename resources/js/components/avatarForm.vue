@@ -1,65 +1,69 @@
 <template>
-	<div>
-		<div class="flex">
-            <img class="mr-1" :src="avatar" width="50" height="50">
+    <div>
+        <div class="level flex justify-center md:justify-start">
+            <label for="file-input">
+				<img class="mx-4 w-20 h-20 object-cover rounded-full sm:block" :src="avatar" width="100" height="100" />
+			</label>
 
-            <h1 v-text="user.name"></h1><small v-text="reputation"></small>
+            <h1 class="flex flex-col font-bold">
+                {{ user.name }}
+                <small class="text-red-500" v-text="reputation"></small>
+                <button class="bg-gray-500 rounded p-1 text-white mt-3" v-if="canUpdate">
+                    <i class="fa fa-cog"></i> 
+                    Update profile
+                </button>
+            </h1>
+        </div>
 
-        </div>
-        
-        <div v-if="canUpdate">
-        	<form method="POST" enctype="multipart/form-data">
-	            <input type="file" name="avatar" style="margin:10px 0" @change="onChange">
-	        </form>
-        </div>
-        
-	</div>
+        <form v-if="canUpdate" method="POST" enctype="multipart/form-data">
+			<div>
+				<input id="file-input" class="hidden" type="file" accept="image/*" @change="onChange">
+			</div>
+		</form>
+
+    </div>
 </template>
 
 <script>
-	export default {
-		props: ['user'],
-		data() {
-			return {
-				avatar: this.user.avatar_path
-			}
-		},
-		computed: {
-			canUpdate() {
-				return this.authorize(user => user.id === this.user.id);
+    export default {
+        props: ['user'],
+        data() {
+            return {
+                avatar: this.user.avatar_path
+            };
+        },
+
+        computed: {
+            canUpdate() {
+                return this.authorize(user => user.id === this.user.id);
+            },
+
+            reputation() {
+                return this.user.reputation + 'XP';
+            }
+        },
+
+        methods: {
+            persist(avatar) {
+                let data = new FormData();
+                data.append('avatar', avatar);
+                axios.post(`/api/users/${this.user.username}/avatar`, data)
+                    .then(() => flash('Avatar uploaded!'));
 			},
-			reputation() {
-				return this.user.reputation + ' XP';
-			}
-		}, 
-		methods: {
 			onChange(e) {
-				if(!e.target.files.length) return;
+                if (e.target.files.length == 0) return;
 
-				let file = e.target.files[0];
+                let file = e.target.files[0];
+                let reader = new FileReader();
 
-				let reader = new FileReader();
+                reader.readAsDataURL(file);
 
-				reader.readAsDataURL(file);
-
-				reader.onload = e => {
-					this.avatar = e.target.result;
-				}
-
-				this.persist(file);
-
-			},
-
-			persist(file) {
-				let data = new FormData();
-
-				data.append('avatar', file);
-				
-				// flash is not working !
-				axios.post(`/api/users/${this.user.name}/avatar`, data)
-					.then(() => flash("Avatar Updated"));
-			}
-		}
-		
-	}
+                reader.onload = e => {
+					let src = e.target.result;
+					this.avatar = src;
+					this.persist(file);
+                };
+            }
+        }
+    }
 </script>

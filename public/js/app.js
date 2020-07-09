@@ -2957,6 +2957,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   data: function data() {
@@ -2973,31 +2981,31 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     reputation: function reputation() {
-      return this.user.reputation + ' XP';
+      return this.user.reputation + 'XP';
     }
   },
   methods: {
+    persist: function persist(avatar) {
+      var data = new FormData();
+      data.append('avatar', avatar);
+      axios.post("/api/users/".concat(this.user.username, "/avatar"), data).then(function () {
+        return flash('Avatar uploaded!');
+      });
+    },
     onChange: function onChange(e) {
       var _this2 = this;
 
-      if (!e.target.files.length) return;
+      if (e.target.files.length == 0) return;
       var file = e.target.files[0];
       var reader = new FileReader();
       reader.readAsDataURL(file);
 
       reader.onload = function (e) {
-        _this2.avatar = e.target.result;
+        var src = e.target.result;
+        _this2.avatar = src;
+
+        _this2.persist(file);
       };
-
-      this.persist(file);
-    },
-    persist: function persist(file) {
-      var data = new FormData();
-      data.append('avatar', file); // flash is not working !
-
-      axios.post("/api/users/".concat(this.user.name, "/avatar"), data).then(function () {
-        return flash("Avatar Updated");
-      });
     }
   }
 });
@@ -61543,30 +61551,52 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "flex" }, [
-      _c("img", {
-        staticClass: "mr-1",
-        attrs: { src: _vm.avatar, width: "50", height: "50" }
-      }),
+    _c("div", { staticClass: "level flex justify-center md:justify-start" }, [
+      _c("label", { attrs: { for: "file-input" } }, [
+        _c("img", {
+          staticClass: "mx-4 w-20 h-20 object-cover rounded-full sm:block",
+          attrs: { src: _vm.avatar, width: "100", height: "100" }
+        })
+      ]),
       _vm._v(" "),
-      _c("h1", { domProps: { textContent: _vm._s(_vm.user.name) } }),
-      _c("small", { domProps: { textContent: _vm._s(_vm.reputation) } })
+      _c("h1", { staticClass: "flex flex-col font-bold" }, [
+        _vm._v(
+          "\n                " + _vm._s(_vm.user.name) + "\n                "
+        ),
+        _c("small", {
+          staticClass: "text-red-500",
+          domProps: { textContent: _vm._s(_vm.reputation) }
+        }),
+        _vm._v(" "),
+        _vm.canUpdate
+          ? _c(
+              "button",
+              { staticClass: "bg-gray-500 rounded p-1 text-white mt-3" },
+              [
+                _c("i", { staticClass: "fa fa-cog" }),
+                _vm._v(
+                  " \n                    Update profile\n                "
+                )
+              ]
+            )
+          : _vm._e()
+      ])
     ]),
     _vm._v(" "),
     _vm.canUpdate
-      ? _c("div", [
-          _c(
-            "form",
-            { attrs: { method: "POST", enctype: "multipart/form-data" } },
-            [
+      ? _c(
+          "form",
+          { attrs: { method: "POST", enctype: "multipart/form-data" } },
+          [
+            _c("div", [
               _c("input", {
-                staticStyle: { margin: "10px 0" },
-                attrs: { type: "file", name: "avatar" },
+                staticClass: "hidden",
+                attrs: { id: "file-input", type: "file", accept: "image/*" },
                 on: { change: _vm.onChange }
               })
-            ]
-          )
-        ])
+            ])
+          ]
+        )
       : _vm._e()
   ])
 }
