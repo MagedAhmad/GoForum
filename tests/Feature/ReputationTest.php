@@ -16,7 +16,7 @@ class ReputationTest extends TestCase
 
         $thread = create('App\Thread');
 
-        $this->assertEquals(5, $thread->user->reputation);
+        $this->assertEquals(3, $thread->user->reputation);
     }
 
     public function test_user_reputation_decreases_when_thread_is_deleted()
@@ -25,7 +25,7 @@ class ReputationTest extends TestCase
 
         $thread = create('App\Thread', ['user_id' => auth()->id()]);
 
-        $this->assertEquals(5, $thread->user->reputation);
+        $this->assertEquals(3, $thread->user->reputation);
 
         $this->delete($thread->path());
 
@@ -66,6 +66,6 @@ class ReputationTest extends TestCase
         $reply->thread->markBestReply($reply);
 
 
-        $this->assertEquals(51, $reply->user->reputation);
+        $this->assertEquals(21, $reply->user->reputation);
     }
 }
