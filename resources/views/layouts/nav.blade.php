@@ -3,7 +3,7 @@
     <div class="container mx-auto">
         <nav class="flex items-center justify-between flex-wrap">
             <div class="flex items-center flex-no-shrink text-white mr-12">
-                <a href="{{ url('/') }}" class=" hover:no-underline">
+                <a href="{{ url('/') }}" class="hover:no-underline hover:text-white">
                   <span class="font-black text-xl tracking-tight">Stickit</span>
                 </a>
             </div>
