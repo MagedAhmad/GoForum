@@ -3615,7 +3615,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     toggleLock: function toggleLock() {
-      axios[this.locked ? 'delete' : 'post']('/lock-threads/' + this.thread.slug);
+      axios.post('/lock-threads/' + this.thread.slug, {
+        _method: this.locked ? 'delete' : 'post'
+      });
       this.locked = !this.locked;
     },
     update: function update() {
