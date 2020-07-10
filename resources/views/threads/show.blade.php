@@ -31,7 +31,7 @@
                         </p>
 
                         <subscripe-button :active="{{ json_encode($thread->is_subscriped_to) }}" v-if="signedIn"></subscripe-button>
-                        <button class="btn btn-danger" @click="toggleLock" v-if="authorize('isAdmin')" v-text="locked ? 'Unlock' : 'Lock'"></button>
+                        <button class="btn btn-danger" @click="toggleLock" v-if="authorize('isAdmin') || authorize('updateThread', thread)" v-text="locked ? 'Unlock' : 'Lock'"></button>
                     </div>
                 </div>
             </div>

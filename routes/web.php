@@ -26,8 +26,8 @@ Route::patch('/threads/{channel}/{thread}','ThreadController@update');
 Route::post('/threads','ThreadController@store');
 Route::get('/threads/{channel}', 'ThreadController@index');
 
-Route::post('lock-threads/{thread}', 'LockedThreadsController@store')->name('lock-threads.store')->middleware('admin');
-Route::delete('lock-threads/{thread}', 'LockedThreadsController@destroy')->name('lock-threads.destroy')->middleware('admin');
+Route::post('lock-threads/{thread}', 'LockedThreadsController@store')->name('lock-threads.store');
+Route::delete('lock-threads/{thread}', 'LockedThreadsController@destroy')->name('lock-threads.destroy');
 
 Route::post('/replies/{reply}/best', 'BestReplyController@store')->name('best-replies.store');
 

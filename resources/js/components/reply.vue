@@ -37,9 +37,9 @@
 	            </article>
 	        </div>
 	        <div class="level">
-				<div v-if="authorize('updateReply', reply) || authorize('updateThread', reply.thread)">
-					<button class="btn btn-sm btn-info mr-1" @click="editing = true">Edit</button>
-	            	<button class="btn btn-sm btn-danger" @click="destroy">Delete</button>
+				<div>
+					<button class="btn btn-sm btn-info mr-1" v-if="authorize('updateReply', reply)" @click="editing = true">Edit</button>
+	            	<button class="btn btn-sm btn-danger" v-if="authorize('updateReply',reply) || authorize('updateThread', reply.thread)" @click="destroy">Delete</button>
 				</div>	 
 				<button class="" @click="MarkBestReply" v-if="authorize('updateThread', reply.thread) && !isBest">Best Reply ?</button>
 

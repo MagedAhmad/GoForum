@@ -9,7 +9,12 @@ class LockedThreadsController extends Controller
 {
     public function store(Thread $thread)
     {   
-        $thread->update(['lock' => true]);
+        if(auth()->user()->isAdmin || auth()->user()->id == $thread->user->id) {
+            $thread->update(['lock' => true]);
+        }else {
+            return 403;
+        }
+
     }
 
 

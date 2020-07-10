@@ -62101,10 +62101,9 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "level" }, [
-          _vm.authorize("updateReply", _vm.reply) ||
-          _vm.authorize("updateThread", _vm.reply.thread)
-            ? _c("div", [
-                _c(
+          _c("div", [
+            _vm.authorize("updateReply", _vm.reply)
+              ? _c(
                   "button",
                   {
                     staticClass: "btn btn-sm btn-info mr-1",
@@ -62115,9 +62114,12 @@ var render = function() {
                     }
                   },
                   [_vm._v("Edit")]
-                ),
-                _vm._v(" "),
-                _c(
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.authorize("updateReply", _vm.reply) ||
+            _vm.authorize("updateThread", _vm.reply.thread)
+              ? _c(
                   "button",
                   {
                     staticClass: "btn btn-sm btn-danger",
@@ -62125,8 +62127,8 @@ var render = function() {
                   },
                   [_vm._v("Delete")]
                 )
-              ])
-            : _vm._e(),
+              : _vm._e()
+          ]),
           _vm._v(" "),
           _vm.authorize("updateThread", _vm.reply.thread) && !_vm.isBest
             ? _c("button", { on: { click: _vm.MarkBestReply } }, [
