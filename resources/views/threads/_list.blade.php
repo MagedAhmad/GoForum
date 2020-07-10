@@ -1,7 +1,7 @@
 @forelse($threads as $thread)
 
 <div>
-    <div class="max-w-4xl px-10 my-4 py-6 bg-white rounded-lg shadow-md">
+    <div class="thread-card max-w-4xl px-10 my-4 py-6 bg-white rounded-lg shadow-md">
         <div class="flex justify-between items-center">
             <span class="font-light text-gray-600">{{ $thread->created_at->diffForHumans()}} - {{ $thread->visits() }} Visits</span>
             <div>
@@ -18,7 +18,7 @@
         <div class="flex justify-between items-center mt-4">
             <a class="text-blue-600 hover:underline" href="{{$thread->path()}}">Read more ..</a>
             <div>
-                <a class="flex items-center" href="#">
+                <a class="flex items-center" href="{{ url('/profiles/' . $thread->user->name) }}">
                     <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" src="{{$thread->user->avatar_path}}" alt="avatar">
                     <h1 class="text-gray-700 font-bold">{{ $thread->user->name }} ({{ $thread->user->reputation .' XP' }})</h1>
                 </a>

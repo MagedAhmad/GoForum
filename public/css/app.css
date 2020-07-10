@@ -10933,3 +10933,9 @@ a.text-dark:focus {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+@media screen and (min-width: 800px) {
+  .thread-card {
+    min-width: 56rem;
+  }
+}
+

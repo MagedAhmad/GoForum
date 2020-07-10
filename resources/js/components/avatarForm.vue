@@ -8,10 +8,10 @@
             <h1 class="flex flex-col font-bold">
                 {{ user.name }}
                 <small class="text-red-500" v-text="reputation"></small>
-                <button class="bg-gray-500 rounded p-1 text-white mt-3" v-if="canUpdate">
+                <a :href="update_user_path" class="hover:bg-gray-800 hover:no-underline bg-gray-500 rounded p-1 text-white mt-3" v-if="canUpdate">
                     <i class="fa fa-cog"></i> 
                     Update profile
-                </button>
+                </a>
             </h1>
         </div>
 
@@ -29,7 +29,8 @@
         props: ['user'],
         data() {
             return {
-                avatar: this.user.avatar_path
+                avatar: this.user.avatar_path,
+                update_user_path: '/profiles/' + this.user.name + '/update' 
             };
         },
 

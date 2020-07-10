@@ -2969,7 +2969,8 @@ __webpack_require__.r(__webpack_exports__);
   props: ['user'],
   data: function data() {
     return {
-      avatar: this.user.avatar_path
+      avatar: this.user.avatar_path,
+      update_user_path: '/profiles/' + this.user.name + '/update'
     };
   },
   computed: {
@@ -61570,8 +61571,12 @@ var render = function() {
         _vm._v(" "),
         _vm.canUpdate
           ? _c(
-              "button",
-              { staticClass: "bg-gray-500 rounded p-1 text-white mt-3" },
+              "a",
+              {
+                staticClass:
+                  "hover:bg-gray-800 hover:no-underline bg-gray-500 rounded p-1 text-white mt-3",
+                attrs: { href: _vm.update_user_path }
+              },
               [
                 _c("i", { staticClass: "fa fa-cog" }),
                 _vm._v(
