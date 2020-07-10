@@ -20,7 +20,11 @@ class LockedThreadsController extends Controller
 
     public function destroy(Thread $thread)
     {
+        if(auth()->user()->isAdmin || auth()->user()->id == $thread->user->id) {
+            $thread->update(['lock' => false]);
+        }else {
+            return 403;
+        }
 
-        $thread->update(['lock' => false]);
     }
 }
