@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    - {{ "Create Thread" }}
+@endsection
+
 @section('styles')
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.1.1/trix.css">

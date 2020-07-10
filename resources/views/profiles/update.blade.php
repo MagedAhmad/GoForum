@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title')
+    - {{ "Update profile" }}
+@endsection
 
 @section('content')
 

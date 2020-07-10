@@ -53,7 +53,7 @@
                             <img class="h-full w-full object-cover" src="{{ auth()->user()->avatar_path }}" alt="avatar">
                             </button>
                             <!-- Dropdown Body -->
-                            <div class="hidden absolute right-0 w-40 mt-2 py-2 bg-white border rounded shadow-xl">   
+                            <div class="hidden absolute right-0 w-40 mt-2 py-2 bg-white border rounded shadow-xl" style="z-index: 5;">   
                                 <a href="{{ url('/profiles/' . auth()->user()->name) }}" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-gray-500 hover:text-white">
                                     Profile
                                 </a>

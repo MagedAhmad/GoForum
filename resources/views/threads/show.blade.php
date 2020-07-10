@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    - {{ $thread->title }}
+@endsection
+
 @section('styles')
 
 <link rel="stylesheet" type="text/css" href="/css/vendor/jquery.atwho.css">

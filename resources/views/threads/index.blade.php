@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    - {{ "Threads" }}
+@endsection
+
 @section('content')
 <div class="container mx-2">
     <div class="row w-full flex flex-col justify-center">
