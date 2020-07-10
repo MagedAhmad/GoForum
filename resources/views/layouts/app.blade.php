@@ -33,7 +33,11 @@
     </script>
 
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-
+    <style>
+      .profile-menu:hover > div {
+        display:inline-block;
+      }
+    </style>
     @yield('styles')
 </head>
 <body>

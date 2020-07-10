@@ -33,17 +33,41 @@
                 <div class="flex flex-col md:flex-row">
                   @if(auth()->check())
                         <notifications></notifications>
-                        <a href="{{ url('/profiles/' . auth()->user()->name) }}" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">{{ auth()->user()->name }}</a>
+                        <a href="{{ url('/profiles/' . auth()->user()->name) }}" class="md:hidden no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
+                            {{ auth()->user()->name }}
+                        </a>
                         
-                            <a class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
+                        <a class="md:hidden no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
+                        <!-- Dropdown -->
+                        <div class="hidden md:inline-block relative profile-menu">
+                            <button class="block h-6 w-6 rounded-full overflow-hidden focus:outline-none">
+                            <img class="h-full w-full object-cover" src="{{ auth()->user()->avatar_path }}" alt="avatar">
+                            </button>
+                            <!-- Dropdown Body -->
+                            <div class="hidden absolute right-0 w-40 mt-2 py-2 bg-white border rounded shadow-xl">   
+                                <a href="{{ url('/profiles/' . auth()->user()->name) }}" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-gray-500 hover:text-white">
+                                    Profile
+                                </a>
+                                <div class="py-2">
+                                    <hr></hr>
+                                </div>
+                                <a href="#" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-gray-500 hover:text-white"onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                            </div>
+                        <!-- // Dropdown Body -->
+                        </div>
+                        <!-- // Dropdown -->
                   @else
                     <a href="{{route('login')}}" class="no-underline font-bold text-white block sm:inline-block sm:mt-0 hover:text-blue-400 mr-4">
                         login
