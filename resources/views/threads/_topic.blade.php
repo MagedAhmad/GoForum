@@ -34,7 +34,7 @@
         </div>
         <div class="mt-2">
             <span class="text-2xl text-gray-700 font-bold hover:text-gray-600" href="{{$thread->path()}}" v-text="this.title"></span>
-            <p class="mt-2 text-gray-600" v-html="this.body"></p>
+            <p class="full-post mt-2 text-gray-600" v-html="this.body"></p>
         </div>
         <div class="flex flex-col md:flex-row justify-between items-center mt-4">
             <div class="mt-4 flex items-center ">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ auth()->user()->name }}
+    - {{ $profileUser->name }}
 @endsection
 
 @section('content')

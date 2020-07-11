@@ -17,5 +17,12 @@
   .thread-card {
     min-width:56rem;
   }
+}
 
+.full-post pre {
+  background-color: #eff0f1;
+  color: black;
+  border-radius: 2px;
+  padding: 5px;
+  max-width: max-content;
 }

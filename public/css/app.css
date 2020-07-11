@@ -10939,3 +10939,13 @@ a.text-dark:focus {
   }
 }
 
+.full-post pre {
+  background-color: #eff0f1;
+  color: black;
+  border-radius: 2px;
+  padding: 5px;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+}
+

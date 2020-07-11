@@ -7,6 +7,7 @@ use App\Exceptions\ThrottleException;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -35,10 +36,10 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return void
      */
-    public function report(Exception $exception)
+    public function report(Throwable $e)
     {
         // if(app()->environment() === 'testing') throw $exception;
-        parent::report($exception);
+        parent::report($e);
     }
 
     /**
@@ -48,17 +49,17 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $e)
     {
-        if($exception instanceof ValidationException){
+        if($e instanceof ValidationException){
             if($request->expectsJson()) {
                 return response("Validation error", 422);
             }
         }
-        if($exception instanceof ThrottleException){
+        if($e instanceof ThrottleException){
             return response("You are posting too frequently", 429);
         }
 
-        return parent::render($request, $exception);
+        return parent::render($request, $e);
     }
 }
