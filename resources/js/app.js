@@ -10,6 +10,8 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 
+import VueChatScroll from 'vue-chat-scroll'
+Vue.use(VueChatScroll)
 
 
 /**
@@ -26,6 +28,7 @@ window.Vue = require('vue');
 Vue.component('flash', require('./components/flash.vue').default);
 Vue.component('paginator', require('./components/paginator.vue').default);
 Vue.component('notifications', require('./components/notifications.vue').default);
+Vue.component('chat', require('./components/chat.vue').default);
 
 Vue.component('thread-view', require('./pages/thread.vue').default);
 
@@ -37,6 +40,7 @@ Vue.component('wysiwyg', require('./components/wysiwyg.vue').default);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
 
 const app = new Vue({
     el: '#app'

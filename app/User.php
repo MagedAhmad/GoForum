@@ -86,11 +86,14 @@ class User extends Authenticatable
         cache()->forever($key, Carbon::now());
             
     }
-    
 
     public function getAvatarPathAttribute($avatar) {
         if(!$avatar) return asset('/avatars/default.png');
         return asset('storage/' . $avatar ?: '/avatars/default.png');
     }
 
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
 }

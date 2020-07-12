@@ -61,3 +61,8 @@ Route::get('/login/{social}/callback','Auth\LoginController@handleProviderCallba
 
 
 
+
+// Chat
+Route::get('/chats/{recipient}', 'ChatController@show');
+Route::post('/chats', 'ChatController@store');
+Route::get('/chats/{recipient}/messages', 'ChatController@messages');

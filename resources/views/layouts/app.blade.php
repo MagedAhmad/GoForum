@@ -8,6 +8,7 @@
     <meta name="author" content="Maged Raslan">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    
     <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 
     <title>Stickit @yield('title')</title>

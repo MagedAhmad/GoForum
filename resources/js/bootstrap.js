@@ -32,11 +32,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 
 
-
-
-
-
-
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
@@ -62,11 +57,32 @@ Vue.prototype.authorize = function(...params) {
 }
 
 
-
-
-
 window.events = new Vue();
 
 window.flash = function(message, level = 'success') {
 	window.events.$emit('flash', {message, level});
 }
+
+
+import Echo from 'laravel-echo';
+
+window.Pusher = require('pusher-js');
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: process.env.MIX_PUSHER_APP_KEY,
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    forceTLS: false,
+    wsHost: window.location.hostname,
+    wsPort: 6001,
+    disableStats: true,
+    enabledTransports: ['ws', 'wss'], // <-- only use ws and wss as valid transports
+});
+
+// window.Echo.channel('chat').listen()
+
+
+window.Echo.join('chat')
+    .listen('MessageSent', (event) => {
+        console.log(event);
+    });
