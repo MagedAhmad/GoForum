@@ -55,9 +55,14 @@ export default {
         this.getMessages()
         Echo.join('chat')
             .listen('MessageSent',(event) => {
-                this.messages.push(event.message)
+                if(event.user.name == window.App.user.name){
+                    this.messages.push(event.message)
+                }
             })
             .listenForWhisper('typing', (response) => {
+                if(response.name != window.App.user.name){
+                    return;
+                }
                 this.typing = true
 
                 if(this.typingTimer) {
@@ -92,7 +97,7 @@ export default {
         },
         sendTypingEvent() {
             Echo.join('chat')
-                .whisper('typing', this.user)
+                .whisper('typing', this.recipient)
         }
     }
 }

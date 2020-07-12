@@ -79,10 +79,3 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'], // <-- only use ws and wss as valid transports
 });
 
-// window.Echo.channel('chat').listen()
-
-
-window.Echo.join('chat')
-    .listen('MessageSent', (event) => {
-        console.log(event);
-    });

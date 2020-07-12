@@ -3083,8 +3083,14 @@ __webpack_require__.r(__webpack_exports__);
 
     this.getMessages();
     Echo.join('chat').listen('MessageSent', function (event) {
-      _this.messages.push(event.message);
+      if (event.user.name == window.App.user.name) {
+        _this.messages.push(event.message);
+      }
     }).listenForWhisper('typing', function (response) {
+      if (response.name != window.App.user.name) {
+        return;
+      }
+
       _this.typing = true;
 
       if (_this.typingTimer) {
@@ -3122,7 +3128,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     sendTypingEvent: function sendTypingEvent() {
-      Echo.join('chat').whisper('typing', this.user);
+      Echo.join('chat').whisper('typing', this.recipient);
     }
   }
 });
@@ -80955,10 +80961,6 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   disableStats: true,
   enabledTransports: ['ws', 'wss'] // <-- only use ws and wss as valid transports
 
-}); // window.Echo.channel('chat').listen()
-
-window.Echo.join('chat').listen('MessageSent', function (event) {
-  console.log(event);
 });
 
 /***/ }),
