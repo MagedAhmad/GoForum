@@ -12,6 +12,10 @@
                     <i class="fa fa-cog"></i> 
                     Update profile
                 </a>
+                <a class="hover:bg-gray-800 hover:no-underline bg-gray-500 rounded p-1 text-white mt-3" v-if="!canUpdate" :href="chat_path">
+                    <i class="fa fa-envelope"></i>
+                    Chat
+                </a>
             </h1>
         </div>
 
@@ -30,7 +34,8 @@
         data() {
             return {
                 avatar: this.user.avatar_path,
-                update_user_path: '/profiles/' + this.user.name + '/update' 
+                update_user_path: '/profiles/' + this.user.name + '/update',
+                chat_path: "/chats/" + this.user.name
             };
         },
 

@@ -2965,12 +2965,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   data: function data() {
     return {
       avatar: this.user.avatar_path,
-      update_user_path: '/profiles/' + this.user.name + '/update'
+      update_user_path: '/profiles/' + this.user.name + '/update',
+      chat_path: "/chats/" + this.user.name
     };
   },
   computed: {
@@ -67862,6 +67867,21 @@ var render = function() {
                 _vm._v(
                   " \n                    Update profile\n                "
                 )
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        !_vm.canUpdate
+          ? _c(
+              "a",
+              {
+                staticClass:
+                  "hover:bg-gray-800 hover:no-underline bg-gray-500 rounded p-1 text-white mt-3",
+                attrs: { href: _vm.chat_path }
+              },
+              [
+                _c("i", { staticClass: "fa fa-envelope" }),
+                _vm._v("\n                    Chat\n                ")
               ]
             )
           : _vm._e()
