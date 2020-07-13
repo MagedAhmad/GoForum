@@ -83,7 +83,7 @@ export default {
                 })
         },
         sendMessage(){
-            axios.post('/chats/', {
+            axios.post('/chats', {
                     body: this.newMessage,
                     to: this.recipient.id
                 })

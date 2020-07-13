@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 
 
@@ -76,6 +75,6 @@ window.Echo = new Echo({
     wsHost: window.location.hostname,
     wsPort: 6001,
     disableStats: true,
-    enabledTransports: ['ws', 'wss'], // <-- only use ws and wss as valid transports
+    enabledTransports: ['wss'], // <-- only use ws and wss as valid transports
 });
 
