@@ -80953,13 +80953,13 @@ window.flash = function (message) {
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "",
+  key: "key",
   cluster: "mt1",
   forceTLS: false,
   wsHost: window.location.hostname,
   wsPort: 6001,
   disableStats: true,
-  enabledTransports: ['wss'] // <-- only use ws and wss as valid transports
+  enabledTransports: ['ws', 'wss'] // <-- only use ws and wss as valid transports
 
 });
 
@@ -81854,8 +81854,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/webmast/public_html/GoForum/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/webmast/public_html/GoForum/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/maged/Hard/projects/GoForum/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/maged/Hard/projects/GoForum/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -75,6 +75,6 @@ window.Echo = new Echo({
     wsHost: window.location.hostname,
     wsPort: 6001,
     disableStats: true,
-    enabledTransports: ['wss'], // <-- only use ws and wss as valid transports
+    enabledTransports: ['ws', 'wss'], // <-- only use ws and wss as valid transports
 });
 
