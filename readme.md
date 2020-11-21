@@ -1,4 +1,4 @@
-# GoForum [![Build Status](https://travis-ci.org/MagedAhmad/GoForum.svg?branch=master)](https://travis-ci.org/MagedAhmad/GoForum)
+# Forum application [![Build Status](https://travis-ci.org/MagedAhmad/GoForum.svg?branch=master)](https://travis-ci.org/MagedAhmad/GoForum)
 
 This is an open source forum
 
